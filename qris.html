@@ -352,7 +352,7 @@ if (!localStorage.getItem('orderId')) {
 document.getElementById('orderId').textContent = localStorage.getItem('orderId');
 
 // Fallback jika data LocalStorage tidak ada (langsung mengakses qris.html)
-if (!order.cart) {
+if (!order.nama && !order.cart) {
   order = {
     nama: 'Guest',
     wa: '-',
@@ -360,13 +360,18 @@ if (!order.cart) {
   };
 }
 
-var cart = order.cart;
-var totalStr = 'Rp ' + Number(cart.totalPrice || 0).toLocaleString('id-ID');
+// Normalisasi data (Support format array baru & format cart lama)
+var totalQty = order.jumlah_tiket || (order.cart ? order.cart.totalQty : 0) || 0;
+var totalPrice = order.total_bayar || (order.cart ? order.cart.totalPrice : 0) || 0;
+var items = order.detail_pesanan || (order.cart ? order.cart.items : []) || [];
+
+var tiketText = items.map(function(i) { return i.name || i.jenis; }).join(', ') || 'Early Bird Ticket - NAMNADA 2026';
+var totalStr = 'Rp ' + Number(totalPrice).toLocaleString('id-ID');
 
 document.getElementById('total').textContent = totalStr;
 document.getElementById('totalGlow').textContent = totalStr;
-document.getElementById('jenisTiket').textContent = (cart.items || []).map(function(i) { return i.jenis; }).join(', ') || '-';
-document.getElementById('jumlahTiket').textContent = cart.totalQty || 0;
+document.getElementById('jenisTiket').textContent = tiketText;
+document.getElementById('jumlahTiket').textContent = totalQty;
 document.getElementById('namaPemesan').textContent = order.nama || '-';
 document.getElementById('waPemesan').textContent = order.wa || '-'; // Diambil langsung dari form
 
