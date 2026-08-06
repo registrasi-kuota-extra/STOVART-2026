@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NAMNADA ID — NAMNADA 2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protix — Stovart 2026</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -11,7 +11,7 @@
     --ink:#1a1a1a;--ink-soft:#4a4a4a;--muted:#8a8a8a;
     --line:#e8e8e8;--bg:#f7f7f8;--white:#fff;
     --success:#2E7D32;
-    --btn-blue:#005ce6;
+    --btn-orange:#FF6B00; /* Warna oranye sesuai screenshot */
   }
   body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
@@ -21,9 +21,10 @@
   a{text-decoration:none;color:inherit}
   button{font-family:inherit}
 
+  /* Header */
   .header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}
   .header-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-  .logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:24px;color:var(--primary);letter-spacing:-1px}
+  .logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:24px;color:var(--btn-orange);letter-spacing:-1px}
   .logo span{color:var(--ink)}
   .header-right{display:flex;align-items:center;gap:12px}
   .lang-selector{
@@ -35,6 +36,7 @@
     display:grid;place-items:center;color:var(--ink-soft);cursor:pointer;background:var(--white);
   }
 
+  /* Steps */
   .steps{background:var(--white);border-bottom:1px solid var(--line)}
   .steps-inner{max-width:1100px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto}
   .step{display:flex;align-items:center;gap:8px;flex-shrink:0}
@@ -42,14 +44,16 @@
     width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
     font-weight:600;font-size:13px;background:#eee;color:var(--muted);transition:all .2s;
   }
-  .step.active .step-num{background:var(--primary);color:var(--white)}
+  .step.active .step-num{background:var(--btn-orange);color:var(--white)}
   .step-label{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
   .step.active .step-label{color:var(--ink);font-weight:600}
   .step-divider{width:28px;height:1px;background:var(--line);margin:0 4px;flex-shrink:0}
   @media(max-width:640px){.step-label{display:none}.step-divider{width:14px}}
 
+  /* Container */
   .container{max-width:880px;margin:0 auto;padding:24px 20px}
 
+  /* Event banner */
   .event-banner{
     width:100%;aspect-ratio:16/7;border-radius:8px;overflow:hidden;
     position:relative;margin-bottom:24px;background:#eee;
@@ -58,6 +62,7 @@
     width:100%;height:100%;object-fit:cover;display:block;
   }
 
+  /* Event header */
   .event-header{margin-bottom:32px}
   .event-meta{
     display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);
@@ -70,10 +75,11 @@
   }
   .event-info{display:flex;flex-wrap:wrap;gap:24px;font-size:14px}
   .event-info-item{display:flex;align-items:flex-start;gap:10px}
-  .event-info-item svg{flex-shrink:0;margin-top:2px;color:var(--primary)}
+  .event-info-item svg{flex-shrink:0;margin-top:2px;color:var(--btn-orange)}
   .event-info-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:2px;font-weight:600}
   .event-info-value{font-weight:500;color:var(--ink);font-size:13px}
 
+  /* Section */
   .ticket-section{margin-bottom:32px}
   .section-title{
     font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:10px;
@@ -81,6 +87,7 @@
   }
   .section-title small{font-size:11px;font-weight:400;color:var(--muted)}
 
+  /* Ticket card */
   .ticket-card{
     background:var(--white);border:1px solid var(--line);border-radius:8px;
     margin-bottom:10px;overflow:hidden;transition:border-color .15s;
@@ -90,22 +97,26 @@
   .ticket-info{flex:1;min-width:0}
   .ticket-name{font-size:16px;font-weight:700;margin-bottom:4px;color:var(--ink)}
   .ticket-desc{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.5}
-  .ticket-price{font-size:18px;font-weight:700;color:var(--primary);font-family:'Helvetica Neue',Arial,sans-serif}
+  .ticket-price{font-size:18px;font-weight:700;color:var(--btn-orange);font-family:'Helvetica Neue',Arial,sans-serif}
   .ticket-price small{font-size:12px;font-weight:400;color:var(--muted);font-family:inherit}
   .ticket-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
   .badge{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase}
   .badge-sale{background:#e6ffe6;color:var(--success);border:1px solid #b3e6b3}
+  .badge-soldout{background:#ffebee;color:#d32f2f;border:1px solid #ffcdd2}
   
   .ticket-action{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}
   
+  /* Qty Control */
   .qty-control{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px;overflow:hidden}
   .qty-btn{
     width:36px;height:36px;background:var(--white);border:none;cursor:pointer;
     font-size:18px;color:var(--ink);display:grid;place-items:center;transition:background .15s;
   }
   .qty-btn:hover:not(:disabled){background:var(--bg)}
-  .qty-btn:disabled{color:var(--muted);cursor:not-allowed;pointer-events:none} /* Optimasi bug disabled */
+  .qty-btn:disabled{color:var(--muted);cursor:not-allowed}
+  .qty-value{width:40px;text-align:center;font-size:14px;font-weight:600;}
 
+  /* Warning Animation */
   .ticket-warning{
     margin-top:15px;
     text-align:center;
@@ -126,12 +137,16 @@
     100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
   }
 
+  /* Footer */
   .footer{background:var(--white);border-top:1px solid var(--line);padding:40px 20px;margin-top:40px;text-align:center}
-  .footer-logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:28px;color:var(--primary);letter-spacing:-1px;margin-bottom:10px;display:inline-block}
+  .footer-logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:28px;color:var(--btn-orange);letter-spacing:-1px;margin-bottom:10px;display:inline-block}
   .footer-logo span{color:var(--ink)}
   .footer p{font-size:12px;color:var(--muted);line-height:1.6}
+  .footer-contact{margin: 15px 0; font-size: 13px; color: var(--ink-soft);}
+  .footer-contact div{margin-bottom: 5px;}
   .footer-copy{margin-top:15px;font-size:11px;color:#aaa}
 
+  /* Sticky bar */
   .sticky-bar{
     position:fixed;bottom:0;left:0;right:0;background:var(--white);
     border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(0,0,0,0.06);
@@ -143,12 +158,18 @@
   .sticky-total-value{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-0.5px;font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.2}
   
   .btn-checkout{
-    background:var(--btn-blue);color:var(--white);border:none;padding:14px 32px;
+    background:var(--btn-orange);color:var(--white);border:none;padding:14px 32px;
     border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;
     letter-spacing:0.3px;
   }
-  .btn-checkout:hover:not(:disabled){background:#004abf}
-  .btn-checkout:disabled{background:#a0c4f1;cursor:not-allowed;pointer-events:none} /* Optimasi bug disabled */
+  .btn-checkout:hover:not(:disabled){background:#e65e00}
+  .btn-checkout:disabled{background:#ffcba0;cursor:not-allowed}
+  
+  .btn-soldout{
+    background:#eee;color:#999;border:none;padding:12px 24px;
+    border-radius:6px;font-size:14px;font-weight:700;cursor:not-allowed;
+  }
+  
   @media(max-width:480px){
     .btn-checkout{padding:12px 20px;font-size:14px}
     .sticky-total-value{font-size:18px}
@@ -157,6 +178,7 @@
     .ticket-action{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
   }
 
+  /* Toast */
   .toast{
     position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
     background:var(--ink);color:var(--white);padding:10px 20px;border-radius:6px;
@@ -171,128 +193,160 @@
 </head>
 <body>
 
+<!-- Header -->
 <header class="header">
-<div class="header-inner">
-<a class="logo" href="#">NAMNADA <span>ID</span></a>
-<div class="header-right" style="position:relative">
-<div class="lang-selector" id="langBtn">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-<span>ID</span>
-<svg fill="none" height="10" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="user-icon" title="Masuk ke akun">
-<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-</div>
-</div>
-</div>
+  <div class="header-inner">
+    <a href="#" class="logo">Protix<span>.ID</span></a>
+    <div class="header-right" style="position:relative">
+      <div class="lang-selector" id="langBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span>ID</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="user-icon" title="Masuk ke akun">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+    </div>
+  </div>
 </header>
 
+<!-- Progress Steps -->
 <div class="steps">
-<div class="steps-inner">
-<div class="step active">
-<div class="step-num">1</div>
-<div class="step-label">Pilih Kategori</div>
+  <div class="steps-inner">
+    <div class="step active">
+      <div class="step-num">1</div>
+      <div class="step-label">Pilih Kategori</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-label">Data Pemesan</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-label">Pembayaran</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-label">E-Tiket</div>
+    </div>
+  </div>
 </div>
-<div class="step-divider"></div>
-<div class="step">
-<div class="step-num">2</div>
-<div class="step-label">Data Pemesan</div>
-</div>
-<div class="step-divider"></div>
-<div class="step">
-<div class="step-num">3</div>
-<div class="step-label">Pembayaran</div>
-</div>
-<div class="step-divider"></div>
-<div class="step">
-<div class="step-num">4</div>
-<div class="step-label">E-Tiket</div>
-</div>
-</div>
-</div>
+
 <main class="container">
 
-<div class="event-banner">
+  <!-- Event banner -->
+  <div class="event-banner">
+    <img src="banner_stovart.png" alt="Banner Stovart 2026 - Karikatur Papan Catur dan Bunga">
+  </div>
 
-<img alt="Banner NAMNADA 2026" src="banner.png"/>
-</div>
-
-<div class="event-header">
-<div class="event-meta">
-<span>Music</span>
-<span class="event-meta-dot"></span>
-<span>Beach</span>
-<span class="event-meta-dot"></span>
-<span>Festival</span>
-</div>
-<h1 class="event-title">NAMNADA 2026</h1>
-<div class="event-info">
-<div class="event-info-item">
-<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><rect height="18" rx="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
-<div>
-<span class="event-info-label">Tanggal &amp; Waktu</span>
-<span class="event-info-value">Sabtu, 12 Desember 2026 · 15:00 WIB - Selesai</span>
-</div>
-</div>
-<div class="event-info-item">
-<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-<div>
-<span class="event-info-label">Lokasi</span>
-<span class="event-info-value">Boom Marina, Pantai Boom, Banyuwangi</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="ticket-section">
-<div class="section-title">
-      Pilih Tiket
-      <small>Kuota terbatas · Akses Festival</small>
-</div>
-
-<div class="ticket-card" data-price="65000" data-ticket="early-bird">
-<div class="ticket-card-inner">
-<div class="ticket-info">
-<div class="ticket-name">Early Bird Ticket - NAMNADA 2026</div>
-<div class="ticket-desc">Penjualan dibuka 5 Agustus. Berlaku untuk akses festival.</div>
-<div class="ticket-price">Rp 65.000 <small>/tiket</small></div>
-<div class="ticket-badges">
-<span class="badge badge-sale">Early Bird</span>
-</div>
-</div>
-<div class="ticket-action">
-<div class="qty-control">
-<button aria-label="Kurangi" class="qty-btn qty-minus" disabled="">−</button>
-<div class="qty-value">0</div>
-<button aria-label="Tambah" class="qty-btn qty-plus">+</button>
-</div>
-</div>
-</div>
-</div>
-
-<div class="ticket-warning">
-      ⚠️ TIKET TAMBAHAN TERSISA 10
+  <!-- Event header -->
+  <div class="event-header">
+    <div class="event-meta">
+      <span>Seni</span>
+      <span class="event-meta-dot"></span>
+      <span>Festival</span>
+      <span class="event-meta-dot"></span>
+      <span>Dewasa</span>
     </div>
-</div>
+    <h1 class="event-title">Stovart 2026 - Stovit Art Festival</h1>
+    <div class="event-info">
+      <div class="event-info-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div>
+          <span class="event-info-label">Tanggal</span>
+          <span class="event-info-value">20 November 2026</span>
+        </div>
+      </div>
+      <div class="event-info-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <span class="event-info-label">Lokasi</span>
+          <span class="event-info-value">Halaman Outdoor Balai Pemuda</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket list -->
+  <div class="ticket-section">
+    <div class="section-title">
+      Pilih Tiket
+      <small>Dipersembahkan oleh BEM FKG UNAIR</small>
+    </div>
+
+    <!-- Tiket Presale Festival -->
+    <div class="ticket-card" data-ticket="presale_festival" data-price="70000" data-name="Presale Festival - Stovart 2026">
+      <div class="ticket-card-inner">
+        <div class="ticket-info">
+          <div class="ticket-name">PRESALE FESTIVAL</div>
+          <div class="ticket-desc">Tiket festival reguler untuk menikmati rangkaian acara Stovit Art Festival 2026.</div>
+          <div class="ticket-price">Rp 70.000 <small>/tiket</small></div>
+          <div class="ticket-badges">
+            <span class="badge badge-sale">On Sale</span>
+          </div>
+        </div>
+        <div class="ticket-action">
+          <div class="qty-control">
+            <button class="qty-btn qty-minus" aria-label="Kurangi">−</button>
+            <div class="qty-value">0</div>
+            <button class="qty-btn qty-plus" aria-label="Tambah">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiket Presale VIP -->
+    <div class="ticket-card" data-ticket="presale_vip" data-price="150000" data-name="Presale VIP - Stovart 2026">
+      <div class="ticket-card-inner">
+        <div class="ticket-info">
+          <div class="ticket-name">PRESALE VIP</div>
+          <div class="ticket-desc">Tiket VIP dengan fasilitas terbaik dan spot strategis (Max 5 tiket/orang).</div>
+          <div class="ticket-price">Rp 150.000 <small>/tiket</small></div>
+          <div class="ticket-badges">
+            <span class="badge badge-sale">On Sale</span>
+          </div>
+        </div>
+        <div class="ticket-action">
+          <div class="qty-control">
+            <button class="qty-btn qty-minus" aria-label="Kurangi">−</button>
+            <div class="qty-value">0</div>
+            <button class="qty-btn qty-plus" aria-label="Tambah">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </main>
 
+<!-- Footer -->
 <footer class="footer">
-<a class="footer-logo" href="#">NAMNADA <span>ID</span></a>
-<p>Dipersembahkan oleh NAMNADA ID</p>
-<p class="footer-copy">© 2024 NAMNADA ID Indonesia · PT Nusantara Tiket Digital</p>
+  <a href="#" class="footer-logo">Protix<span>.ID</span></a>
+  <div class="footer-contact">
+    <div>📞 085174296612</div>
+    <div>✉️ protix.id@gmail.com</div>
+  </div>
+  <p>Platform tiket resmi untuk Stovit Art Festival 2026.</p>
+  <p class="footer-copy">© 2025 Protix. All rights reserved.</p>
 </footer>
 
+<!-- Sticky bottom bar -->
 <div class="sticky-bar">
-<div class="sticky-inner">
-<div class="sticky-total">
-<span class="sticky-total-label">Jumlah (<span id="totalQtyDisplay">0</span> tiket)</span>
-<span class="sticky-total-value" id="stickyTotal">Rp 0</span>
+  <div class="sticky-inner">
+    <div class="sticky-total">
+      <span class="sticky-total-label">Total (<span id="totalQtyDisplay">0</span> tiket)</span>
+      <span class="sticky-total-value" id="stickyTotal">Rp 0</span>
+    </div>
+    <button class="btn-checkout" id="checkoutBtn" disabled>Lanjutkan ke Pembayaran</button>
+  </div>
 </div>
 
-<button class="btn-checkout" disabled="" id="checkoutBtn">Beli Tiket Sekarang</button>
-</div>
-</div>
 <div class="toast" id="toast"></div>
+
 <script>
   const formatRp = n => 'Rp ' + n.toLocaleString('id-ID');
 
@@ -304,58 +358,89 @@
     window._toastT = setTimeout(() => t.classList.remove('show'), 2200);
   }
 
-  const card = document.querySelector('.ticket-card');
-  const price = parseInt(card.dataset.price);
-  let qty = 0;
+  // Pilih semua kartu tiket yang memiliki atribut data-ticket (On Sale)
+  const cards = document.querySelectorAll('.ticket-card[data-ticket]');
   
-  const qtyVal = card.querySelector('.qty-value');
-  const minusBtn = card.querySelector('.qty-minus');
-  const plusBtn = card.querySelector('.qty-plus');
+  let cart = {};
+  let totalQty = 0;
+  let totalPrice = 0;
   
   const stickyTotal = document.getElementById('stickyTotal');
   const totalQtyDisplay = document.getElementById('totalQtyDisplay');
   const checkoutBtn = document.getElementById('checkoutBtn');
 
+  cards.forEach(card => {
+    const id = card.dataset.ticket;
+    const price = parseInt(card.dataset.price);
+    const name = card.dataset.name;
+    cart[id] = { qty: 0, price: price, name: name };
+    
+    const qtyVal = card.querySelector('.qty-value');
+    const minusBtn = card.querySelector('.qty-minus');
+    const plusBtn = card.querySelector('.qty-plus');
+    
+    plusBtn.addEventListener('click', () => {
+      if(cart[id].qty < 5) { // Maksimal pembelian 5 tiket sesuai syarat & ketentuan
+        cart[id].qty++;
+        updateUI();
+      } else {
+        showToast('Maksimal pembelian 5 tiket per kategori');
+      }
+    });
+
+    minusBtn.addEventListener('click', () => {
+      if (cart[id].qty > 0) {
+        cart[id].qty--;
+        updateUI();
+      }
+    });
+  });
+
   function updateUI() {
-    qtyVal.textContent = qty;
-    totalQtyDisplay.textContent = qty;
-    stickyTotal.textContent = formatRp(qty * price);
+    totalQty = 0;
+    totalPrice = 0;
     
-    minusBtn.disabled = (qty === 0);
-    
-    checkoutBtn.disabled = (qty === 0);
+    cards.forEach(card => {
+      const id = card.dataset.ticket;
+      card.querySelector('.qty-value').textContent = cart[id].qty;
+      card.querySelector('.qty-minus').disabled = (cart[id].qty === 0);
+      
+      totalQty += cart[id].qty;
+      totalPrice += (cart[id].qty * cart[id].price);
+    });
+
+    totalQtyDisplay.textContent = totalQty;
+    stickyTotal.textContent = formatRp(totalPrice);
+    checkoutBtn.disabled = (totalQty === 0);
   }
 
-  plusBtn.addEventListener('click', () => {
-    qty++;
-    updateUI();
-  });
-
-  minusBtn.addEventListener('click', () => {
-    if (qty > 0) {
-      qty--;
-      updateUI();
-    }
-  });
-
-  checkoutBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // Mencegah trigger berulang
-    
-    if (qty > 0) {
-      const params = new URLSearchParams({
-        nama: 'Early Bird Ticket - NAMNADA 2026',
-        qty: qty,
-        harga: price,
-        total: qty * price
+  // Redirect to form.html on checkout using URL Parameters
+  checkoutBtn.addEventListener('click', () => {
+    if (totalQty > 0) {
+      const params = new URLSearchParams();
+      let hasItems = false;
+      
+      Object.entries(cart).forEach(([id, item]) => {
+        if(item.qty > 0) {
+          params.append(id + '_name', item.name);
+          params.append(id + '_qty', item.qty);
+          params.append(id + '_harga', item.price);
+          params.append(id + '_total', item.qty * item.price);
+          hasItems = true;
+        }
       });
       
-      window.location.href = 'form.html?' + params.toString();
+      if(hasItems) {
+        window.location.href = 'form.html?' + params.toString();
+      }
     } else {
       showToast('Silakan pilih jumlah tiket terlebih dahulu');
     }
   });
 
+  // Initial setup
   updateUI();
 </script>
+
 </body>
 </html>
