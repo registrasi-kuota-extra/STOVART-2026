@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOKÉT — Pembayaran Pending</title>
+<title>Protix — Pembayaran Pending</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
   :root {
-    --primary: #E6007E;
-    --primary-dark: #B3005F;
-    --primary-light: #FFE5F1;
-    --primary-glow: rgba(230, 0, 126, 0.4);
+    --primary: #FF6B00; /* Diubah ke oranye Protix */
+    --primary-dark: #E65E00;
+    --primary-light: #FFE5D6;
+    --primary-glow: rgba(255, 107, 0, 0.4);
     --bg-main: #0B0B14;
     --bg-grad-1: #1A1208;
     --bg-grad-2: #0B0B14;
@@ -52,7 +52,7 @@
     inset: 0;
     background:
       radial-gradient(900px circle at 10% 10%, rgba(245, 158, 11, 0.18), transparent 50%),
-      radial-gradient(700px circle at 90% 20%, rgba(230, 0, 126, 0.12), transparent 50%),
+      radial-gradient(700px circle at 90% 20%, rgba(255, 107, 0, 0.12), transparent 50%),
       radial-gradient(800px circle at 50% 100%, rgba(239, 68, 68, 0.08), transparent 50%),
       linear-gradient(180deg, var(--bg-grad-1), var(--bg-grad-2));
     z-index: -2;
@@ -703,8 +703,8 @@
 
 <div class="topbar">
   <a href="index.html" class="logo-wrap">
-    <img src="logo.png" alt="LOKÉT" class="logo-img">
-    <span class="logo-text">LOK<span>ÉT</span></span>
+    <img src="logo.png" alt="Protix" class="logo-img">
+    <span class="logo-text">Protix<span>.ID</span></span>
   </a>
   <div class="topbar-right">
     <div class="topbar-chip"><i class="fa-solid fa-triangle-exclamation"></i> Pending</div>
@@ -756,25 +756,25 @@
   <!-- Ticket Card -->
   <div class="ticket-card">
     <div class="ticket-header">
-      <h2>NAMNADA 2026</h2>
+      <h2 id="eventTitle">PROTIK EVENT</h2>
       <div class="status"><i class="fa-solid fa-clock"></i> Pending</div>
     </div>
 
     <div class="ticket-body">
       <div class="banner-wrap">
-        <img src="banner.png" alt="Banner NAMNADA 2026" class="event-banner-img">
+        <img src="banner_stovart.png" alt="Banner Event" class="event-banner-img">
         <div class="banner-overlay"></div>
         <div class="banner-tag"><i class="fa-solid fa-triangle-exclamation"></i> Menunggu Pembayaran</div>
         <div class="banner-watermark">Pending</div>
       </div>
 
       <div class="ticket-info-grid">
-        <div class="info-item"><i class="fa-solid fa-hashtag"></i> Order ID<span id="orderId">LOKET-000</span></div>
+        <div class="info-item"><i class="fa-solid fa-hashtag"></i> Order ID<span id="orderId">PROTIX-000</span></div>
         <div class="info-item"><i class="fa-solid fa-user"></i> Nama Pemesan<span id="namaPemesan">-</span></div>
         <div class="info-item"><i class="fa-solid fa-ticket"></i> Kategori Tiket<span id="jenisTiket">-</span></div>
         <div class="info-item"><i class="fa-solid fa-layer-group"></i> Jumlah Tiket<span id="jumlahTiket">0 Tiket</span></div>
-        <div class="info-item"><i class="fa-solid fa-calendar"></i> Tanggal<span>Sabtu, 12 Des 2026 · 15:00 WIB</span></div>
-        <div class="info-item"><i class="fa-solid fa-location-dot"></i> Lokasi<span>Boom Marina, Banyuwangi</span></div>
+        <div class="info-item"><i class="fa-solid fa-calendar"></i> Tanggal<span>20 November 2026</span></div>
+        <div class="info-item"><i class="fa-solid fa-location-dot"></i> Lokasi<span>Halaman Outdoor Balai Pemuda</span></div>
       </div>
 
       <div class="divider">
@@ -802,8 +802,8 @@
   <!-- Action chips -->
   <div class="action-row">
     <a href="index.html" class="action-chip"><i class="fa-solid fa-house"></i> Beranda</a>
-    <a href="#" class="action-chip"><i class="fa-solid fa-rotate"></i> Coba Bayar Lagi</a>
-    <a href="https://wa.me/628217003017" target="_blank" class="action-chip"><i class="fa-brands fa-whatsapp"></i> Bantuan</a>
+    <a href="index.html" class="action-chip"><i class="fa-solid fa-rotate"></i> Coba Bayar Lagi</a>
+    <a href="https://wa.me/62895627108479" target="_blank" class="action-chip"><i class="fa-brands fa-whatsapp"></i> Bantuan</a>
   </div>
 
   <!-- Help Box -->
@@ -813,7 +813,7 @@
       <strong>Butuh bantuan dengan transaksi Anda?</strong>
       <span>Hubungi support kami via WhatsApp untuk bantuan refund dan pembayaran ulang.</span>
     </div>
-    <a href="https://wa.me/628217003017" target="_blank" class="help-btn">
+    <a href="https://wa.me/62895627108479" target="_blank" class="help-btn">
       <i class="fa-brands fa-whatsapp"></i> Hubungi
     </a>
   </div>
@@ -826,31 +826,47 @@
     <a href="index.html" class="btn btn-secondary">
       <i class="fa-solid fa-house"></i> Beranda
     </a>
-    <a href="#" class="btn btn-primary">
+    <a href="index.html" id="retryBtn" class="btn btn-primary">
       <i class="fa-solid fa-rotate"></i> Bayar Ulang
     </a>
   </div>
 </div>
 
 <script>
-  // Ambil data pemesanan dari localStorage
-  var order = JSON.parse(localStorage.getItem('etatix_order') || '{}');
-  var orderId = localStorage.getItem('orderId') || 'LOKET-000';
+  // PERBAIKAN: Mengambil data 'protix_order' (sebelumnya salah baca 'etatix_order')
+  var order = JSON.parse(localStorage.getItem('protix_order') || '{}');
+  var orderId = localStorage.getItem('orderId') || 'PROTIX-000';
 
-  // Fallback jika data LocalStorage tidak ada
-  if (!order.cart) {
+  // Fallback jika data LocalStorage tidak ada / kosong
+  if (!order.detail_pesanan) {
     order = {
       nama: 'Guest',
-      cart: { items: [{ jenis: 'Early Bird Ticket - NAMNADA 2026' }], totalQty: 1 }
+      detail_pesanan: [{ name: 'Tiket Reguler' }],
+      jumlah_tiket: 1
     };
   }
 
-  var cart = order.cart || { items: [], totalQty: 0 };
-
+  // Ambil nama event dari tiket pertama yang dipesan
+  var firstTicketName = order.detail_pesanan[0].name || 'PROTIK EVENT';
+  var eventName = firstTicketName.split(' - ')[0].toUpperCase();
+  document.getElementById('eventTitle').textContent = eventName;
+  
   document.getElementById('orderId').textContent = orderId;
   document.getElementById('namaPemesan').textContent = order.nama || '-';
-  document.getElementById('jenisTiket').textContent = (cart.items || []).map(function(i) { return i.jenis; }).join(', ') || '-';
-  document.getElementById('jumlahTiket').textContent = cart.totalQty + ' Tiket';
+  
+  // PERBAIKAN: Mengakses properti 'name' dari array 'detail_pesanan' (sebelumnya salah panggil 'cart.items.jenis')
+  var tiketText = order.detail_pesanan.map(function(i) { return i.name; }).join(', ') || '-';
+  document.getElementById('jenisTiket').textContent = tiketText;
+  
+  document.getElementById('jumlahTiket').textContent = (order.jumlah_tiket || 0) + ' Tiket';
+
+  // PERBAIKAN: Hapus data lama jika user menekan tombol Bayar Ulang agar tidak bentrok
+  document.getElementById('retryBtn').addEventListener('click', function(e) {
+    localStorage.removeItem('protix_order');
+    localStorage.removeItem('orderId');
+    localStorage.removeItem('refund_start_time');
+    // Biarkan redirect ke index.html berjalan
+  });
 
   // Countdown timer untuk estimasi refund 1x24 jam
   (function() {
