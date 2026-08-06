@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAMNADA ID — QRIS Pembayaran NAMNADA 2026</title>
+<title>Protix — QRIS Pembayaran</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
 :root {
-  --primary: #E6007E; /* Magenta NAMNADA ID */
-  --primary-dark: #C5006E;
-  --primary-light: #FFE5F1;
-  --primary-glow: rgba(230, 0, 126, 0.15);
-  --primary-subtle: rgba(230, 0, 126, 0.05);
+  --primary: #FF6B00; /* Oranye Protix */
+  --primary-dark: #E65E00;
+  --primary-light: #FFE5D6;
+  --primary-glow: rgba(255, 107, 0, 0.15);
+  --primary-subtle: rgba(255, 107, 0, 0.05);
   --bg-main: #f7f7f8;
   --card-bg: #FFFFFF;
   --card-border: #e8e8e8;
   --text-main: #1a1a1a;
   --text-muted: #8a8a8a;
-  --btn-blue: #005ce6; /* Tombol aksi utama biru */
+  --btn-orange: #FF6B00;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif; }
@@ -40,7 +40,7 @@ body.no-scroll { overflow: hidden !important; }
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 8px; /* Sesuai NAMNADA ID */
+  border-radius: 8px;
   padding: 24px;
   margin-bottom: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
@@ -111,7 +111,7 @@ body.no-scroll { overflow: hidden !important; }
   border: 2px dashed var(--primary-light); border-radius: 8px; padding: 28px 20px; text-align: center; cursor: pointer;
   background: #fff; transition: 0.2s ease; display: block;
 }
-.upload-area:hover { box-shadow: 0 2px 8px var(--primary-glow); border-color: var(--primary); background: rgba(230, 0, 126, 0.02); }
+.upload-area:hover { box-shadow: 0 2px 8px var(--primary-glow); border-color: var(--primary); background: rgba(255, 107, 0, 0.02); }
 .upload-icon { font-size: 42px; margin-bottom: 10px; display: block; color: var(--primary); }
 .upload-area h2 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
 .upload-area p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
@@ -130,10 +130,10 @@ body.no-scroll { overflow: hidden !important; }
 
 .submit-btn {
   width: 100%; padding: 14px 32px; border: none; border-radius: 6px; font-weight: 700; font-size: 15px; cursor: pointer;
-  background: var(--btn-blue); color: #fff; transition: 0.2s ease; margin-top: 18px; overflow: hidden;
+  background: var(--btn-orange); color: #fff; transition: 0.2s ease; margin-top: 18px; overflow: hidden;
 }
-.submit-btn:hover:not(:disabled) { background: #004abf; }
-.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; background: #a0c4f1; }
+.submit-btn:hover:not(:disabled) { background: var(--primary-dark); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; background: #ffcba0; }
 
 /* ── Loading Overlay Full Screen ── */
 .loading-overlay {
@@ -191,9 +191,9 @@ body.no-scroll { overflow: hidden !important; }
 
 <div class="container">
   <div class="logo">
-    <img src="banner.png" alt="NAMNADA 2026" class="logo-event">
+    <img src="banner_stovart.png" alt="Stovart 2026 - Stovit Art Festival" class="logo-event">
     <div class="logo-brand">
-      NAMNADA <span>ID</span>
+      Protix<span>.ID</span>
     </div>
   </div>
 
@@ -223,7 +223,7 @@ body.no-scroll { overflow: hidden !important; }
       <div class="qr-header">
         <div class="merchant">
           <i class="fa-solid fa-store"></i>
-          <span>NAMNADA ID<br><small style="font-size: 10px; font-weight: 500; color: var(--text-muted);">Official Merchant</small></span>
+          <span>Protix.ID<br><small style="font-size: 10px; font-weight: 500; color: var(--text-muted);">Official Merchant</small></span>
         </div>
         <div class="nmid">NMID : ID2024056789012</div>
       </div>
@@ -295,8 +295,8 @@ body.no-scroll { overflow: hidden !important; }
       <svg class="progress-ring" viewBox="0 0 180 180">
         <defs>
           <linearGradient id="gradStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FF4FA3"/>
-            <stop offset="100%" stop-color="#E6007E"/>
+            <stop offset="0%" stop-color="#FFB066"/>
+            <stop offset="100%" stop-color="#FF6B00"/>
           </linearGradient>
         </defs>
         <circle class="progress-ring-bg" cx="90" cy="90" r="80"></circle>
@@ -343,37 +343,39 @@ body.no-scroll { overflow: hidden !important; }
 
 <script>
 // ── Load order data dari form.html ──
-var order = JSON.parse(localStorage.getItem('namnada_order') || '{}');
+var order = JSON.parse(localStorage.getItem('protix_order') || '{}');
 
-// Generate Order ID format NAMNADA
+// Fallback baca dari URL parameter (jika localStorage hilang)
+if (!order.nama) {
+    var urlParams = new URLSearchParams(window.location.search);
+    order.nama = urlParams.get('nama') || '-';
+    order.wa = urlParams.get('wa') || '-';
+    order.total_bayar = parseInt(urlParams.get('total') || '0');
+    order.jumlah_tiket = parseInt(urlParams.get('totalQty') || '0');
+    order.detail_pesanan = []; // Tidak ada detail spesifik di URL
+}
+
+// Generate Order ID format PROTIX
 if (!localStorage.getItem('orderId')) {
-  localStorage.setItem('orderId', 'NAMNADA-' + Date.now());
+  localStorage.setItem('orderId', 'PROTIX-' + Date.now());
 }
 document.getElementById('orderId').textContent = localStorage.getItem('orderId');
 
-// Fallback jika data LocalStorage tidak ada (langsung mengakses qris.html)
-if (!order.nama && !order.cart) {
-  order = {
-    nama: 'Guest',
-    wa: '-',
-    cart: { items: [{ jenis: 'Early Bird Ticket - NAMNADA 2026', qty: 1, harga: 65000 }], totalQty: 1, totalPrice: 65000 }
-  };
-}
-
-// Normalisasi data (Support format array baru & format cart lama)
-var totalQty = order.jumlah_tiket || (order.cart ? order.cart.totalQty : 0) || 0;
-var totalPrice = order.total_bayar || (order.cart ? order.cart.totalPrice : 0) || 0;
-var items = order.detail_pesanan || (order.cart ? order.cart.items : []) || [];
-
-var tiketText = items.map(function(i) { return i.name || i.jenis; }).join(', ') || 'Early Bird Ticket - NAMNADA 2026';
-var totalStr = 'Rp ' + Number(totalPrice).toLocaleString('id-ID');
+var totalStr = 'Rp ' + Number(order.total_bayar || 0).toLocaleString('id-ID');
 
 document.getElementById('total').textContent = totalStr;
 document.getElementById('totalGlow').textContent = totalStr;
+
+// Mengambil detail tiket
+var tiketText = '-';
+if (order.detail_pesanan && order.detail_pesanan.length > 0) {
+    tiketText = order.detail_pesanan.map(function(i) { return i.name; }).join(', ');
+}
+
 document.getElementById('jenisTiket').textContent = tiketText;
-document.getElementById('jumlahTiket').textContent = totalQty;
+document.getElementById('jumlahTiket').textContent = order.jumlah_tiket || 0;
 document.getElementById('namaPemesan').textContent = order.nama || '-';
-document.getElementById('waPemesan').textContent = order.wa || '-'; // Diambil langsung dari form
+document.getElementById('waPemesan').textContent = order.wa || '-'; 
 
 // ── Timer Countdown ──
 var duration = 180;
@@ -382,7 +384,7 @@ var timerInterval = null;
 var isProcessing = false;
 
 function timerRun() {
-  if (isProcessing) return; // Hentikan jika sedang loading
+  if (isProcessing) return; 
   var m = Math.floor(duration / 60);
   var s = duration % 60;
   timerEl.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
@@ -392,7 +394,7 @@ function timerRun() {
 
   if (duration <= 0) {
     clearInterval(timerInterval);
-    location.href = 'pending.html'; // DIUBAH KE pending.html
+    location.href = 'success.html';
     return;
   }
   duration--;
@@ -430,7 +432,7 @@ fileInput.addEventListener('change', function() {
 cekInput.addEventListener('change', checkButton);
 
 // ── Premium Loading Logic (3 minutes / 180 seconds) ──
-var LOADING_DURATION = 180000; // 180 detik (3 menit) dalam milidetik
+var LOADING_DURATION = 180000; // 180 detik (3 menit)
 var loadingOverlay = document.getElementById('loading');
 var progressCircle = document.getElementById('progressCircle');
 var progressNum = document.getElementById('progressNum');
@@ -438,7 +440,7 @@ var loadingBar = document.getElementById('loadingBar');
 var loadingTime = document.getElementById('loadingTime');
 var loadingSubtitle = document.getElementById('loadingSubtitle');
 
-var CIRCUMFERENCE = 2 * Math.PI * 80; // 502.65
+var CIRCUMFERENCE = 2 * Math.PI * 80;
 progressCircle.style.strokeDasharray = CIRCUMFERENCE;
 progressCircle.style.strokeDashoffset = CIRCUMFERENCE;
 
@@ -462,10 +464,10 @@ function formatTime(sec) {
 
 function startPremiumLoading() {
   isProcessing = true;
-  clearInterval(timerInterval); // Matikan timer hitung mundur agar tidak bentrok
+  clearInterval(timerInterval);
 
   loadingOverlay.classList.add('active');
-  document.body.classList.add('no-scroll'); // Kunci scroll body
+  document.body.classList.add('no-scroll');
 
   var startTime = Date.now();
 
@@ -474,22 +476,16 @@ function startPremiumLoading() {
     var progress = Math.min(elapsed / LOADING_DURATION, 1);
     var percent = Math.floor(progress * 100);
 
-    // Update Lingkaran Progres
     progressCircle.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
     progressNum.textContent = percent;
-
-    // Update Bar Bawah
     loadingBar.style.width = percent + '%';
 
-    // Update Waktu
     var elapsedSec = Math.floor(elapsed / 1000);
     loadingTime.textContent = formatTime(elapsedSec) + ' / 03:00';
 
-    // Update Teks Status
     var subIdx = Math.min(Math.floor(progress * subtitles.length), subtitles.length - 1);
     loadingSubtitle.textContent = subtitles[subIdx];
 
-    // Update Step Indikator
     var activeStep = Math.min(Math.floor(progress * stepElements.length), stepElements.length - 1);
     stepElements.forEach(function(el, idx) {
       el.classList.remove('active', 'done');
@@ -502,9 +498,8 @@ function startPremiumLoading() {
     });
 
     if (progress < 1) {
-      requestAnimationFrame(update); // Lanjut animasi
+      requestAnimationFrame(update);
     } else {
-      // Animasi Selesai (100%)
       stepElements.forEach(function(el) {
         el.classList.remove('active');
         el.classList.add('done');
@@ -514,10 +509,9 @@ function startPremiumLoading() {
       loadingBar.style.width = '100%';
       loadingSubtitle.textContent = 'Pembayaran berhasil dikonfirmasi!';
 
-      // Redirect ke pending.html
       setTimeout(function() {
-        window.location.href = 'pending.html'; // DIUBAH KE pending.html
-      }, 1000); // Jeda 1 detik setelah 100% agar pengguna bisa melihat tulisan sukses
+        window.location.href = 'success.html';
+      }, 1000);
     }
   }
 
@@ -529,7 +523,6 @@ btn.addEventListener('click', function() {
   startPremiumLoading();
 });
 
-// ── Page load fade in ──
 window.addEventListener('load', function() {
   document.body.style.opacity = '1';
 });
