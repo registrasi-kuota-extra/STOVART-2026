@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAMNADA ID — Form Pemesanan NAMNADA 2026</title>
+<title>Protix — Form Pemesanan Stovart 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
   :root {
-    --primary: #E6007E; --primary-dark: #C5006E; --primary-light: #FFE5F1;
-    --primary-glow: rgba(230, 0, 126, 0.15); --bg-main: #f7f7f8; --card-bg: #FFFFFF;
+    --primary: #FF6B00; --primary-dark: #E65E00; --primary-light: #FFE5D6;
+    --primary-glow: rgba(255, 107, 0, 0.15); --bg-main: #f7f7f8; --card-bg: #FFFFFF;
     --card-border: #e8e8e8; --text-main: #1a1a1a; --text-muted: #8a8a8a; --error: #EF4444;
-    --btn-blue: #005ce6;
+    --btn-orange: #FF6B00;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif; }
   body { background: var(--bg-main); color: var(--text-main); padding-bottom: 120px; overflow-x: hidden; -webkit-font-smoothing:antialiased; }
   .container { max-width: 900px; margin: auto; }
 
-  /* Header NAMNADA ID */
+  /* Header Protix */
   .topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #fff; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100; }
   .logo { font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 24px; color: var(--primary); letter-spacing: -1px; text-decoration: none; }
   .logo span { color: var(--text-main); }
@@ -67,9 +67,9 @@
 
   /* Bottom Bar */
   .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; padding: 12px 20px; box-shadow: 0 -2px 12px rgba(0,0,0,0.06); border-top: 1px solid var(--card-border); z-index: 100; }
-  .btn { width: 100%; max-width: 900px; margin: auto; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 32px; border: none; border-radius: 6px; background: var(--btn-blue); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-  .btn:hover:not(:disabled) { background: #004abf; }
-  .btn:disabled { background: #a0c4f1; cursor: not-allowed; }
+  .btn { width: 100%; max-width: 900px; margin: auto; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 32px; border: none; border-radius: 6px; background: var(--btn-orange); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+  .btn:hover:not(:disabled) { background: var(--primary-dark); }
+  .btn:disabled { background: #ffcba0; cursor: not-allowed; }
 
   /* Loading */
   .loading-overlay { visibility: hidden; opacity: 0; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.3s ease; }
@@ -94,7 +94,7 @@
 <body>
 
 <div class="topbar">
-  <a href="index.html" class="logo">NAMNADA <span>ID</span></a>
+  <a href="index.html" class="logo">Protix<span>.ID</span></a>
   <div class="topbar-right">
     <div class="lang-selector"><i class="fa-solid fa-globe"></i> ID</div>
     <div class="user-icon"><i class="fa-solid fa-user"></i></div>
@@ -103,15 +103,15 @@
 
 <div class="container">
   <div class="banner">
-    <img src="banner.png" alt="NAMNADA 2026">
+    <img src="banner_stovart.png" alt="Stovart 2026 - Stovit Art Festival">
   </div>
 
   <div class="hero-card">
-    <h2>NAMNADA 2026</h2>
-    <p>Music · Beach · Festival</p>
+    <h2>Stovart 2026 - Stovit Art Festival</h2>
+    <p>Dipersembahkan oleh BEM FKG UNAIR</p>
     <div class="event-info">
-      <div><i class="fa-solid fa-calendar-days"></i> Sabtu, 12 Desember 2026 · 15:00 WIB</div>
-      <div><i class="fa-solid fa-location-dot"></i> Boom Marina, Banyuwangi</div>
+      <div><i class="fa-solid fa-calendar-days"></i> 20 November 2026</div>
+      <div><i class="fa-solid fa-location-dot"></i> Halaman Outdoor Balai Pemuda</div>
     </div>
   </div>
 
@@ -196,10 +196,51 @@
 <script>
   // Ambil data dari URL Parameter (dari index.html)
   const urlParams = new URLSearchParams(window.location.search);
-  const qty = parseInt(urlParams.get('qty') || '0');
-  const total = parseInt(urlParams.get('total') || '0');
-  const namaTiket = decodeURIComponent(urlParams.get('nama') || 'Early Bird Ticket - NAMNADA 2026');
-  const harga = parseInt(urlParams.get('harga') || '0');
+  
+  // Inisialisasi variabel keranjang
+  let cartItems = [];
+  let totalQty = 0;
+  let totalPrice = 0;
+
+  // Cek tiket Presale Festival
+  const fQty = parseInt(urlParams.get('presale_festival_qty') || '0');
+  if (fQty > 0) {
+    cartItems.push({
+      id: 'presale_festival',
+      name: urlParams.get('presale_festival_name') || 'Presale Festival',
+      qty: fQty,
+      harga: parseInt(urlParams.get('presale_festival_harga') || '0'),
+      total: parseInt(urlParams.get('presale_festival_total') || '0')
+    });
+    totalQty += fQty;
+    totalPrice += parseInt(urlParams.get('presale_festival_total') || '0');
+  }
+
+  // Cek tiket Presale VIP
+  const vQty = parseInt(urlParams.get('presale_vip_qty') || '0');
+  if (vQty > 0) {
+    cartItems.push({
+      id: 'presale_vip',
+      name: urlParams.get('presale_vip_name') || 'Presale VIP',
+      qty: vQty,
+      harga: parseInt(urlParams.get('presale_vip_harga') || '0'),
+      total: parseInt(urlParams.get('presale_vip_total') || '0')
+    });
+    totalQty += vQty;
+    totalPrice += parseInt(urlParams.get('presale_vip_total') || '0');
+  }
+
+  // Fallback jika tidak ada parameter khusus (sistem lama)
+  if (cartItems.length === 0) {
+    const oldQty = parseInt(urlParams.get('qty') || '0');
+    const oldTotal = parseInt(urlParams.get('total') || '0');
+    const oldName = urlParams.get('nama') || 'Tiket Reguler';
+    if (oldQty > 0) {
+      cartItems.push({ name: oldName, qty: oldQty, total: oldTotal });
+      totalQty = oldQty;
+      totalPrice = oldTotal;
+    }
+  }
 
   const namaEl = document.getElementById('nama');
   const identitasEl = document.getElementById('identitas');
@@ -213,14 +254,20 @@
   const lanjutBtn = document.getElementById('lanjut');
 
   // Tampilkan data ke layar
-  document.getElementById('totalBayar').innerText = 'Rp ' + total.toLocaleString('id-ID');
-  document.getElementById('jumlahTiket').innerText = qty;
+  document.getElementById('totalBayar').innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
+  document.getElementById('jumlahTiket').innerText = totalQty;
   
-  const subTotal = qty * harga;
-  document.getElementById('detailTiket').innerHTML = `<div class="summary-row"><span>${namaTiket} (${qty}x)</span><strong>Rp ${subTotal.toLocaleString('id-ID')}</strong></div>`;
-  document.getElementById('jenisTiket').innerText = `${namaTiket} (${qty})`;
+  let detailHtml = '';
+  let jenisTiketText = '';
+  cartItems.forEach(item => {
+    detailHtml += `<div class="summary-row"><span>${item.name} (${item.qty}x)</span><strong>Rp ${item.total.toLocaleString('id-ID')}</strong></div>`;
+    jenisTiketText += `${item.name} (${item.qty})<br>`;
+  });
+  
+  document.getElementById('detailTiket').innerHTML = detailHtml;
+  document.getElementById('jenisTiket').innerHTML = jenisTiketText;
 
-  // Simpan Draft Form ke LocalStorage (Opsional)
+  // Simpan Draft Form ke LocalStorage
   function saveDraft() {
     try {
       localStorage.setItem('draft_nama', namaEl.value);
@@ -278,17 +325,20 @@
 
     // Siapkan data untuk dikirim ke Formspree
     const orderData = {
-      nama: namaEl.value, wa: waEl.value, email: emailEl.value,
-      identitas: identitasEl.value, nomor_id: nomorIdEl.value, alamat: alamatEl.value,
-      jenis_tiket: namaTiket, jumlah_tiket: qty, total_bayar: total
+      nama: namaEl.value, 
+      wa: waEl.value, 
+      email: emailEl.value,
+      identitas: identitasEl.value, 
+      nomor_id: nomorIdEl.value, 
+      alamat: alamatEl.value,
+      detail_pesanan: cartItems,
+      jumlah_tiket: totalQty, 
+      total_bayar: totalPrice
     };
 
     // Simpan ke LocalStorage sebagai cadangan
     try {
-      localStorage.setItem('namnada_order', JSON.stringify({
-        nama: namaEl.value, wa: waEl.value,
-        cart: { items: [{ jenis: namaTiket, qty: qty, harga: harga }], totalQty: qty, totalPrice: total }
-      }));
+      localStorage.setItem('protix_order', JSON.stringify(orderData));
     } catch(e) {}
 
     // Kirim data ke Formspree
@@ -300,8 +350,12 @@
 
     // Langsung redirect ke qris.html (bawa parameter URL juga)
     const qrisParams = new URLSearchParams({
-      nama: namaEl.value, wa: waEl.value, jenis: namaTiket, qty: qty, total: total
+      nama: namaEl.value, 
+      wa: waEl.value, 
+      totalQty: totalQty,
+      total: totalPrice
     });
+    
     window.location.href = 'qris.html?' + qrisParams.toString();
   };
 </script>
