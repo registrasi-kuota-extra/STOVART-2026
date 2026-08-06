@@ -337,7 +337,7 @@ body.no-scroll { overflow: hidden !important; }
     <div class="loading-bar-wrap">
       <div class="loading-bar" id="loadingBar"></div>
     </div>
-    <div class="loading-time" id="loadingTime">00:00 / 03:00</div>
+    <div class="loading-time" id="loadingTime">00:00 / 00:25</div>
   </div>
 </div>
 
@@ -378,7 +378,7 @@ document.getElementById('namaPemesan').textContent = order.nama || '-';
 document.getElementById('waPemesan').textContent = order.wa || '-'; 
 
 // ── Timer Countdown ──
-var duration = 180;
+var duration = 180; // 3 menit
 var timerEl = document.getElementById('timer');
 var timerInterval = null;
 var isProcessing = false;
@@ -394,7 +394,9 @@ function timerRun() {
 
   if (duration <= 0) {
     clearInterval(timerInterval);
-    location.href = 'success.html';
+    // PERBAIKAN: Jika waktu habis, redirect ke index.html bukan success.html
+    alert('Waktu pembayaran habis! Silakan lakukan pemesanan kembali.');
+    window.location.href = 'index.html';
     return;
   }
   duration--;
@@ -431,8 +433,9 @@ fileInput.addEventListener('change', function() {
 
 cekInput.addEventListener('change', checkButton);
 
-// ── Premium Loading Logic (3 minutes / 180 seconds) ──
-var LOADING_DURATION = 180000; // 180 detik (3 menit)
+// ── Premium Loading Logic ──
+// PERBAIKAN: Ubah durasi loading dari 180000 (3 menit) ke 25000 (25 detik) agar lebih realistis
+var LOADING_DURATION = 25000; // 25 detik
 var loadingOverlay = document.getElementById('loading');
 var progressCircle = document.getElementById('progressCircle');
 var progressNum = document.getElementById('progressNum');
@@ -481,7 +484,8 @@ function startPremiumLoading() {
     loadingBar.style.width = percent + '%';
 
     var elapsedSec = Math.floor(elapsed / 1000);
-    loadingTime.textContent = formatTime(elapsedSec) + ' / 03:00';
+    // PERBAIKAN: Format waktu mulai 00:00 hingga 00:25
+    loadingTime.textContent = formatTime(elapsedSec) + ' / 00:25';
 
     var subIdx = Math.min(Math.floor(progress * subtitles.length), subtitles.length - 1);
     loadingSubtitle.textContent = subtitles[subIdx];
@@ -508,6 +512,10 @@ function startPremiumLoading() {
       progressNum.textContent = 100;
       loadingBar.style.width = '100%';
       loadingSubtitle.textContent = 'Pembayaran berhasil dikonfirmasi!';
+
+      // PERBAIKAN: Hapus data pesanan dari localStorage agar siap untuk transaksi berikutnya
+      localStorage.removeItem('protix_order');
+      localStorage.removeItem('orderId');
 
       setTimeout(function() {
         window.location.href = 'success.html';
