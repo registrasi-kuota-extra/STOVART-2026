@@ -11,7 +11,7 @@
     --ink:#1a1a1a;--ink-soft:#4a4a4a;--muted:#8a8a8a;
     --line:#e8e8e8;--bg:#f7f7f8;--white:#fff;
     --success:#2E7D32;
-    --btn-orange:#FF6B00; /* Warna oranye sesuai screenshot */
+    --btn-orange:#FF6B00;
   }
   body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
@@ -21,7 +21,6 @@
   a{text-decoration:none;color:inherit}
   button{font-family:inherit}
 
-  /* Header */
   .header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}
   .header-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
   .logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:24px;color:var(--btn-orange);letter-spacing:-1px}
@@ -36,7 +35,6 @@
     display:grid;place-items:center;color:var(--ink-soft);cursor:pointer;background:var(--white);
   }
 
-  /* Steps */
   .steps{background:var(--white);border-bottom:1px solid var(--line)}
   .steps-inner{max-width:1100px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto}
   .step{display:flex;align-items:center;gap:8px;flex-shrink:0}
@@ -50,19 +48,14 @@
   .step-divider{width:28px;height:1px;background:var(--line);margin:0 4px;flex-shrink:0}
   @media(max-width:640px){.step-label{display:none}.step-divider{width:14px}}
 
-  /* Container */
   .container{max-width:880px;margin:0 auto;padding:24px 20px}
 
-  /* Event banner */
   .event-banner{
     width:100%;aspect-ratio:16/7;border-radius:8px;overflow:hidden;
     position:relative;margin-bottom:24px;background:#eee;
   }
-  .event-banner img{
-    width:100%;height:100%;object-fit:cover;display:block;
-  }
+  .event-banner img{width:100%;height:100%;object-fit:cover;display:block}
 
-  /* Event header */
   .event-header{margin-bottom:32px}
   .event-meta{
     display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);
@@ -79,7 +72,6 @@
   .event-info-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:2px;font-weight:600}
   .event-info-value{font-weight:500;color:var(--ink);font-size:13px}
 
-  /* Section */
   .ticket-section{margin-bottom:32px}
   .section-title{
     font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:10px;
@@ -87,7 +79,6 @@
   }
   .section-title small{font-size:11px;font-weight:400;color:var(--muted)}
 
-  /* Ticket card */
   .ticket-card{
     background:var(--white);border:1px solid var(--line);border-radius:8px;
     margin-bottom:10px;overflow:hidden;transition:border-color .15s;
@@ -103,10 +94,9 @@
   .badge{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase}
   .badge-sale{background:#e6ffe6;color:var(--success);border:1px solid #b3e6b3}
   .badge-soldout{background:#ffebee;color:#d32f2f;border:1px solid #ffcdd2}
-  
+
   .ticket-action{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}
-  
-  /* Qty Control */
+
   .qty-control{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px;overflow:hidden}
   .qty-btn{
     width:36px;height:36px;background:var(--white);border:none;cursor:pointer;
@@ -114,39 +104,29 @@
   }
   .qty-btn:hover:not(:disabled){background:var(--bg)}
   .qty-btn:disabled{color:var(--muted);cursor:not-allowed}
-  .qty-value{width:40px;text-align:center;font-size:14px;font-weight:600;}
+  .qty-value{width:40px;text-align:center;font-size:14px;font-weight:600}
 
-  /* Warning Animation */
   .ticket-warning{
-    margin-top:15px;
-    text-align:center;
-    font-size:14px;
-    font-weight:800;
-    color:#d32f2f;
-    background:#ffebee;
-    border:1px solid #ffcdd2;
-    padding:10px;
-    border-radius:6px;
-    letter-spacing:1px;
+    margin-top:15px;text-align:center;font-size:14px;font-weight:800;
+    color:#d32f2f;background:#ffebee;border:1px solid #ffcdd2;
+    padding:10px;border-radius:6px;letter-spacing:1px;
     animation:pulse-warning 1.5s infinite;
   }
 
   @keyframes pulse-warning {
-    0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4); }
-    50% { transform: scale(1.02); opacity: 0.9; background-color: #ffcdd2; color: #b71c1c; box-shadow: 0 0 0 5px rgba(211, 47, 47, 0); }
-    100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+    0%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(211,47,47,0.4)}
+    50%{transform:scale(1.02);opacity:0.9;background-color:#ffcdd2;color:#b71c1c;box-shadow:0 0 0 5px rgba(211,47,47,0)}
+    100%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(211,47,47,0)}
   }
 
-  /* Footer */
   .footer{background:var(--white);border-top:1px solid var(--line);padding:40px 20px;margin-top:40px;text-align:center}
   .footer-logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:28px;color:var(--btn-orange);letter-spacing:-1px;margin-bottom:10px;display:inline-block}
   .footer-logo span{color:var(--ink)}
   .footer p{font-size:12px;color:var(--muted);line-height:1.6}
-  .footer-contact{margin: 15px 0; font-size: 13px; color: var(--ink-soft);}
-  .footer-contact div{margin-bottom: 5px;}
+  .footer-contact{margin:15px 0;font-size:13px;color:var(--ink-soft)}
+  .footer-contact div{margin-bottom:5px}
   .footer-copy{margin-top:15px;font-size:11px;color:#aaa}
 
-  /* Sticky bar */
   .sticky-bar{
     position:fixed;bottom:0;left:0;right:0;background:var(--white);
     border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(0,0,0,0.06);
@@ -156,7 +136,7 @@
   .sticky-total{display:flex;flex-direction:column}
   .sticky-total-label{font-size:12px;color:var(--muted);font-weight:500}
   .sticky-total-value{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-0.5px;font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.2}
-  
+
   .btn-checkout{
     background:var(--btn-orange);color:var(--white);border:none;padding:14px 32px;
     border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;
@@ -164,12 +144,12 @@
   }
   .btn-checkout:hover:not(:disabled){background:#e65e00}
   .btn-checkout:disabled{background:#ffcba0;cursor:not-allowed}
-  
+
   .btn-soldout{
     background:#eee;color:#999;border:none;padding:12px 24px;
     border-radius:6px;font-size:14px;font-weight:700;cursor:not-allowed;
   }
-  
+
   @media(max-width:480px){
     .btn-checkout{padding:12px 20px;font-size:14px}
     .sticky-total-value{font-size:18px}
@@ -178,13 +158,16 @@
     .ticket-action{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
   }
 
-  /* Toast */
   .toast{
-    position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
+    position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(20px);
     background:var(--ink);color:var(--white);padding:10px 20px;border-radius:6px;
     font-size:13px;opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:480px){
+    .toast{bottom:120px}
+  }
 
   @media(prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important}
@@ -193,11 +176,10 @@
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
   <div class="header-inner">
     <a href="#" class="logo">Protix<span>.ID</span></a>
-    <div class="header-right" style="position:relative">
+    <div class="header-right">
       <div class="lang-selector" id="langBtn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <span>ID</span>
@@ -210,7 +192,6 @@
   </div>
 </header>
 
-<!-- Progress Steps -->
 <div class="steps">
   <div class="steps-inner">
     <div class="step active">
@@ -237,12 +218,10 @@
 
 <main class="container">
 
-  <!-- Event banner -->
   <div class="event-banner">
     <img src="banner_stovart.png" alt="Banner Stovart 2026 - Karikatur Papan Catur dan Bunga">
   </div>
 
-  <!-- Event header -->
   <div class="event-header">
     <div class="event-meta">
       <span>Seni</span>
@@ -270,14 +249,12 @@
     </div>
   </div>
 
-  <!-- Ticket list -->
   <div class="ticket-section">
     <div class="section-title">
       Pilih Tiket
       <small>Dipersembahkan oleh BEM FKG UNAIR</small>
     </div>
 
-    <!-- Tiket Presale Festival -->
     <div class="ticket-card" data-ticket="presale_festival" data-price="70000" data-name="Presale Festival - Stovart 2026" data-stock="50">
       <div class="ticket-card-inner">
         <div class="ticket-info">
@@ -290,15 +267,14 @@
         </div>
         <div class="ticket-action">
           <div class="qty-control">
-            <button class="qty-btn qty-minus" aria-label="Kurangi">−</button>
-            <div class="qty-value" aria-live="polite">0</div>
-            <button class="qty-btn qty-plus" aria-label="Tambah">+</button>
+            <button class="qty-btn qty-minus" aria-label="Kurangi" type="button">−</button>
+            <div class="qty-value" role="status" aria-live="polite" aria-atomic="true">0</div>
+            <button class="qty-btn qty-plus" aria-label="Tambah" type="button">+</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tiket Presale VIP -->
     <div class="ticket-card" data-ticket="presale_vip" data-price="150000" data-name="Presale VIP - Stovart 2026" data-stock="5">
       <div class="ticket-card-inner">
         <div class="ticket-info">
@@ -311,15 +287,14 @@
         </div>
         <div class="ticket-action">
           <div class="qty-control">
-            <button class="qty-btn qty-minus" aria-label="Kurangi">−</button>
-            <div class="qty-value" aria-live="polite">0</div>
-            <button class="qty-btn qty-plus" aria-label="Tambah">+</button>
+            <button class="qty-btn qty-minus" aria-label="Kurangi" type="button">−</button>
+            <div class="qty-value" role="status" aria-live="polite" aria-atomic="true">0</div>
+            <button class="qty-btn qty-plus" aria-label="Tambah" type="button">+</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tiket On The Spot (Sold Out) -->
     <div class="ticket-card" data-ticket="ots" data-price="100000" data-name="On The Spot - Stovart 2026" data-stock="0">
       <div class="ticket-card-inner">
         <div class="ticket-info">
@@ -340,7 +315,6 @@
 
 </main>
 
-<!-- Footer -->
 <footer class="footer">
   <a href="#" class="footer-logo">Protix<span>.ID</span></a>
   <div class="footer-contact">
@@ -351,18 +325,17 @@
   <p class="footer-copy">© 2025 Protix. All rights reserved.</p>
 </footer>
 
-<!-- Sticky bottom bar -->
 <div class="sticky-bar">
   <div class="sticky-inner">
     <div class="sticky-total">
-      <span class="sticky-total-label">Total (<span id="totalQtyDisplay" aria-live="polite">0</span> tiket)</span>
-      <span class="sticky-total-value" id="stickyTotal" aria-live="polite">Rp 0</span>
+      <span class="sticky-total-label">Total (<span id="totalQtyDisplay" aria-live="polite" aria-atomic="true">0</span> tiket)</span>
+      <span class="sticky-total-value" id="stickyTotal" role="status" aria-live="polite" aria-atomic="true">Rp 0</span>
     </div>
-    <button class="btn-checkout" id="checkoutBtn" disabled>Lanjutkan ke Pembayaran</button>
+    <button class="btn-checkout" id="checkoutBtn" disabled type="button">Lanjutkan ke Pembayaran</button>
   </div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
   const formatRp = n => 'Rp ' + n.toLocaleString('id-ID');
@@ -376,41 +349,37 @@
     toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
   }
 
-  // Pilih semua kartu tiket yang memiliki atribut data-ticket
   const cards = document.querySelectorAll('.ticket-card[data-ticket]');
-  
+
   let cart = {};
   let totalQty = 0;
   let totalPrice = 0;
-  
+
   const stickyTotal = document.getElementById('stickyTotal');
   const totalQtyDisplay = document.getElementById('totalQtyDisplay');
   const checkoutBtn = document.getElementById('checkoutBtn');
 
   cards.forEach(card => {
     const id = card.dataset.ticket;
-    const price = parseInt(card.dataset.price);
+    const price = parseInt(card.dataset.price, 10);
     const name = card.dataset.name;
-    const stock = parseInt(card.dataset.stock) || 0; // Ambil data stok, default 0 jika tidak ada
-    
+    const stock = parseInt(card.dataset.stock, 10) || 0;
+
     cart[id] = { qty: 0, price: price, name: name, stock: stock };
-    
+
     const plusBtn = card.querySelector('.qty-plus');
-    
-    // Hanya tambahkan event listener jika tombol plus ada (tiket tidak sold out)
+
     if (plusBtn) {
-      const qtyVal = card.querySelector('.qty-value');
       const minusBtn = card.querySelector('.qty-minus');
-      
+
       plusBtn.addEventListener('click', () => {
-        // Batas pembelian: maksimal 5 per orang atau sesuai sisa stok
         const maxLimit = Math.min(5, cart[id].stock);
-        
-        if(cart[id].qty < maxLimit) {
+
+        if (cart[id].qty < maxLimit) {
           cart[id].qty++;
           updateUI();
         } else {
-          if (cart[id].stock <= 5 && cart[id].qty === cart[id].stock) {
+          if (cart[id].qty === cart[id].stock) {
             showToast('Maaf, stok tiket ini sudah habis');
           } else {
             showToast('Maksimal pembelian 5 tiket per kategori');
@@ -430,20 +399,20 @@
   function updateUI() {
     totalQty = 0;
     totalPrice = 0;
-    
+
     cards.forEach(card => {
       const id = card.dataset.ticket;
       const qtyVal = card.querySelector('.qty-value');
       const minusBtn = card.querySelector('.qty-minus');
-      
+
       if (qtyVal) {
         qtyVal.textContent = cart[id].qty;
       }
-      
+
       if (minusBtn) {
         minusBtn.disabled = (cart[id].qty === 0);
       }
-      
+
       totalQty += cart[id].qty;
       totalPrice += (cart[id].qty * cart[id].price);
     });
@@ -453,14 +422,13 @@
     checkoutBtn.disabled = (totalQty === 0);
   }
 
-  // Redirect to form.html on checkout using URL Parameters
   checkoutBtn.addEventListener('click', () => {
     if (totalQty > 0) {
       const params = new URLSearchParams();
       let hasItems = false;
-      
+
       Object.entries(cart).forEach(([id, item]) => {
-        if(item.qty > 0) {
+        if (item.qty > 0) {
           params.append(id + '_name', item.name);
           params.append(id + '_qty', item.qty);
           params.append(id + '_harga', item.price);
@@ -468,8 +436,8 @@
           hasItems = true;
         }
       });
-      
-      if(hasItems) {
+
+      if (hasItems) {
         window.location.href = 'form.html?' + params.toString();
       }
     } else {
@@ -477,7 +445,6 @@
     }
   });
 
-  // Initial setup
   updateUI();
 </script>
 
