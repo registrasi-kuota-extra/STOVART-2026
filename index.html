@@ -278,7 +278,7 @@
     </div>
 
     <!-- Tiket Presale Festival -->
-    <div class="ticket-card" data-ticket="presale_festival" data-price="70000" data-name="Presale Festival - Stovart 2026">
+    <div class="ticket-card" data-ticket="presale_festival" data-price="70000" data-name="Presale Festival - Stovart 2026" data-stock="50">
       <div class="ticket-card-inner">
         <div class="ticket-info">
           <div class="ticket-name">PRESALE FESTIVAL</div>
@@ -291,7 +291,7 @@
         <div class="ticket-action">
           <div class="qty-control">
             <button class="qty-btn qty-minus" aria-label="Kurangi">−</button>
-            <div class="qty-value">0</div>
+            <div class="qty-value" aria-live="polite">0</div>
             <button class="qty-btn qty-plus" aria-label="Tambah">+</button>
           </div>
         </div>
@@ -299,7 +299,7 @@
     </div>
 
     <!-- Tiket Presale VIP -->
-    <div class="ticket-card" data-ticket="presale_vip" data-price="150000" data-name="Presale VIP - Stovart 2026">
+    <div class="ticket-card" data-ticket="presale_vip" data-price="150000" data-name="Presale VIP - Stovart 2026" data-stock="5">
       <div class="ticket-card-inner">
         <div class="ticket-info">
           <div class="ticket-name">PRESALE VIP</div>
@@ -312,9 +312,26 @@
         <div class="ticket-action">
           <div class="qty-control">
             <button class="qty-btn qty-minus" aria-label="Kurangi">−</button>
-            <div class="qty-value">0</div>
+            <div class="qty-value" aria-live="polite">0</div>
             <button class="qty-btn qty-plus" aria-label="Tambah">+</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiket On The Spot (Sold Out) -->
+    <div class="ticket-card" data-ticket="ots" data-price="100000" data-name="On The Spot - Stovart 2026" data-stock="0">
+      <div class="ticket-card-inner">
+        <div class="ticket-info">
+          <div class="ticket-name">ON THE SPOT</div>
+          <div class="ticket-desc">Tiket yang dibeli langsung di lokasi acara.</div>
+          <div class="ticket-price">Rp 100.000 <small>/tiket</small></div>
+          <div class="ticket-badges">
+            <span class="badge badge-soldout">Sold Out</span>
+          </div>
+        </div>
+        <div class="ticket-action">
+          <button class="btn-soldout" disabled>Sold Out</button>
         </div>
       </div>
     </div>
@@ -338,27 +355,28 @@
 <div class="sticky-bar">
   <div class="sticky-inner">
     <div class="sticky-total">
-      <span class="sticky-total-label">Total (<span id="totalQtyDisplay">0</span> tiket)</span>
-      <span class="sticky-total-value" id="stickyTotal">Rp 0</span>
+      <span class="sticky-total-label">Total (<span id="totalQtyDisplay" aria-live="polite">0</span> tiket)</span>
+      <span class="sticky-total-value" id="stickyTotal" aria-live="polite">Rp 0</span>
     </div>
     <button class="btn-checkout" id="checkoutBtn" disabled>Lanjutkan ke Pembayaran</button>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
   const formatRp = n => 'Rp ' + n.toLocaleString('id-ID');
+  let toastTimer;
 
   function showToast(msg){
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.classList.add('show');
-    clearTimeout(window._toastT);
-    window._toastT = setTimeout(() => t.classList.remove('show'), 2200);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
   }
 
-  // Pilih semua kartu tiket yang memiliki atribut data-ticket (On Sale)
+  // Pilih semua kartu tiket yang memiliki atribut data-ticket
   const cards = document.querySelectorAll('.ticket-card[data-ticket]');
   
   let cart = {};
@@ -373,27 +391,40 @@
     const id = card.dataset.ticket;
     const price = parseInt(card.dataset.price);
     const name = card.dataset.name;
-    cart[id] = { qty: 0, price: price, name: name };
+    const stock = parseInt(card.dataset.stock) || 0; // Ambil data stok, default 0 jika tidak ada
     
-    const qtyVal = card.querySelector('.qty-value');
-    const minusBtn = card.querySelector('.qty-minus');
+    cart[id] = { qty: 0, price: price, name: name, stock: stock };
+    
     const plusBtn = card.querySelector('.qty-plus');
     
-    plusBtn.addEventListener('click', () => {
-      if(cart[id].qty < 5) { // Maksimal pembelian 5 tiket sesuai syarat & ketentuan
-        cart[id].qty++;
-        updateUI();
-      } else {
-        showToast('Maksimal pembelian 5 tiket per kategori');
-      }
-    });
+    // Hanya tambahkan event listener jika tombol plus ada (tiket tidak sold out)
+    if (plusBtn) {
+      const qtyVal = card.querySelector('.qty-value');
+      const minusBtn = card.querySelector('.qty-minus');
+      
+      plusBtn.addEventListener('click', () => {
+        // Batas pembelian: maksimal 5 per orang atau sesuai sisa stok
+        const maxLimit = Math.min(5, cart[id].stock);
+        
+        if(cart[id].qty < maxLimit) {
+          cart[id].qty++;
+          updateUI();
+        } else {
+          if (cart[id].stock <= 5 && cart[id].qty === cart[id].stock) {
+            showToast('Maaf, stok tiket ini sudah habis');
+          } else {
+            showToast('Maksimal pembelian 5 tiket per kategori');
+          }
+        }
+      });
 
-    minusBtn.addEventListener('click', () => {
-      if (cart[id].qty > 0) {
-        cart[id].qty--;
-        updateUI();
-      }
-    });
+      minusBtn.addEventListener('click', () => {
+        if (cart[id].qty > 0) {
+          cart[id].qty--;
+          updateUI();
+        }
+      });
+    }
   });
 
   function updateUI() {
@@ -402,8 +433,16 @@
     
     cards.forEach(card => {
       const id = card.dataset.ticket;
-      card.querySelector('.qty-value').textContent = cart[id].qty;
-      card.querySelector('.qty-minus').disabled = (cart[id].qty === 0);
+      const qtyVal = card.querySelector('.qty-value');
+      const minusBtn = card.querySelector('.qty-minus');
+      
+      if (qtyVal) {
+        qtyVal.textContent = cart[id].qty;
+      }
+      
+      if (minusBtn) {
+        minusBtn.disabled = (cart[id].qty === 0);
+      }
       
       totalQty += cart[id].qty;
       totalPrice += (cart[id].qty * cart[id].price);
