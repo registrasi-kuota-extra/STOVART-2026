@@ -21,8 +21,10 @@
   .logo { font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 24px; color: var(--primary); letter-spacing: -1px; text-decoration: none; }
   .logo span { color: var(--text-main); }
   .topbar-right { display: flex; align-items: center; gap: 12px; }
-  .lang-selector { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text-muted); cursor:pointer; padding:7px 10px; border:1px solid var(--card-border); border-radius:4px; background:var(--card-bg); }
-  .user-icon { width:36px; height:36px; border:1px solid var(--card-border); border-radius:50%; display:grid; place-items:center; color:var(--text-muted); cursor:pointer; background:var(--card-bg); }
+  .lang-selector { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text-muted); cursor:pointer; padding:7px 10px; border:1px solid var(--card-border); border-radius:4px; background:var(--card-bg); transition: 0.2s; }
+  .lang-selector:hover { border-color: var(--primary); color: var(--primary); }
+  .user-icon { width:36px; height:36px; border:1px solid var(--card-border); border-radius:50%; display:grid; place-items:center; color:var(--text-muted); cursor:pointer; background:var(--card-bg); transition: 0.2s; }
+  .user-icon:hover { border-color: var(--primary); color: var(--primary); }
 
   /* Banner & Hero */
   .banner img { width: 100%; max-height: 350px; object-fit: cover; display: block; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
@@ -34,9 +36,9 @@
   .event-info i { color: var(--primary); }
 
   /* Form Card */
-  .header { padding: 10px 25px 5px; }
-  .header h1 { font-size: 22px; font-weight: 800; }
-  .header p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+  .header-title { padding: 10px 25px 5px; }
+  .header-title h1 { font-size: 22px; font-weight: 800; }
+  .header-title p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
 
   .card { background: #fff; border: 1px solid var(--card-border); border-radius: 8px; padding: 24px; margin: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
   .title { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--text-main); padding-bottom: 10px; }
@@ -52,6 +54,8 @@
     background: #fff; font-size: 14px; transition: 0.2s; color: var(--text-main);
   }
   textarea { resize: vertical; min-height: 80px; padding-left: 16px; }
+  select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 16px center; background-size: 14px; }
+  
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
   input.error, select.error, textarea.error { border-color: var(--error); background: #FFF0F0; animation: shake 0.4s; }
   @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
@@ -62,7 +66,7 @@
   .total span { color: var(--primary); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 20px; }
 
   .check { display: flex; gap: 12px; margin-top: 12px; align-items: flex-start; background: #FAFAFA; padding: 14px; border-radius: 6px; border: 1px solid var(--card-border); }
-  .check input { width: 18px; height: 18px; min-width: 18px; accent-color: var(--primary); cursor: pointer; margin-top: 2px; }
+  .check input { width: 18px; height: 18px; min-width: 18px; accent-color: var(--primary); cursor: pointer; margin-top: 2px; padding: 0; }
   .check label { font-size: 13px; color: var(--text-muted); cursor: pointer; line-height: 1.5; }
 
   /* Bottom Bar */
@@ -80,12 +84,20 @@
   .loading-text { font-size: 16px; font-weight: 700; color: var(--text-main); }
   .loading-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
 
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--text-main); color: #fff; padding: 12px 24px; border-radius: 6px;
+    font-size: 14px; font-weight: 500; opacity: 0; pointer-events: none; transition: all .3s; z-index: 100000; max-width: 90vw; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
   @media (max-width: 480px) {
     .hero-card { margin: -20px 14px 16px; padding: 20px; }
     .hero-card h2 { font-size: 20px; }
     .event-info { flex-direction: column; gap: 6px; }
-    .header { padding: 10px 14px 5px; }
-    .header h1 { font-size: 20px; }
+    .header-title { padding: 10px 14px 5px; }
+    .header-title h1 { font-size: 20px; }
     .card { margin: 14px; padding: 18px; }
     .btn { font-size: 14px; padding: 12px 20px; }
   }
@@ -115,7 +127,7 @@
     </div>
   </div>
 
-  <div class="header">
+  <div class="header-title">
     <h1>Form Pemesanan Tiket</h1>
     <p>Lengkapi data berikut sebelum melanjutkan ke pembayaran.</p>
   </div>
@@ -143,7 +155,10 @@
         <i class="fa-solid fa-id-card input-icon"></i>
         <select id="identitas">
           <option value="">Pilih Jenis Identitas</option>
-          <option>KTP</option><option>SIM</option><option>Paspor</option><option>Kartu Pelajar</option>
+          <option value="KTP">KTP</option>
+          <option value="SIM">SIM</option>
+          <option value="Paspor">Paspor</option>
+          <option value="Kartu Pelajar">Kartu Pelajar</option>
         </select>
       </div>
     </div>
@@ -193,11 +208,22 @@
   <div class="loading-sub">Mohon tunggu sebentar</div>
 </div>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
+  // Sistem Notifikasi Toast
+  let toastTimer;
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
   // Ambil data dari URL Parameter (dari index.html)
   const urlParams = new URLSearchParams(window.location.search);
   
-  // Inisialisasi variabel keranjang
   let cartItems = [];
   let totalQty = 0;
   let totalPrice = 0;
@@ -230,16 +256,9 @@
     totalPrice += parseInt(urlParams.get('presale_vip_total') || '0');
   }
 
-  // Fallback jika tidak ada parameter khusus (sistem lama)
+  // Redirect balik ke index jika keranjang kosong
   if (cartItems.length === 0) {
-    const oldQty = parseInt(urlParams.get('qty') || '0');
-    const oldTotal = parseInt(urlParams.get('total') || '0');
-    const oldName = urlParams.get('nama') || 'Tiket Reguler';
-    if (oldQty > 0) {
-      cartItems.push({ name: oldName, qty: oldQty, total: oldTotal });
-      totalQty = oldQty;
-      totalPrice = oldTotal;
-    }
+    window.location.href = 'index.html';
   }
 
   const namaEl = document.getElementById('nama');
@@ -298,32 +317,52 @@
   lanjutBtn.onclick = function() {
     const wajib = [namaEl, identitasEl, nomorIdEl, emailEl, waEl, alamatEl];
     let isValid = true;
+    let firstError = null;
+    
     wajib.forEach(field => field.classList.remove('error'));
 
     for (const field of wajib) {
       if (!field.value.trim()) {
         field.classList.add('error');
+        if (!firstError) firstError = field;
         isValid = false;
       }
     }
 
     if (!isValid) {
-      alert('Mohon lengkapi semua data wajib (berwarna merah).');
-      const firstError = document.querySelector('.error');
+      showToast('Mohon lengkapi semua data wajib di atas.');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
+    // Validasi Format Email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailEl.value.trim())) {
+      emailEl.classList.add('error');
+      showToast('Format E-mail tidak valid.');
+      emailEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Validasi Format WhatsApp (Hanya Angka, minimal 8 digit)
+    const phonePattern = /^[0-9]{8,15}$/;
+    if (!phonePattern.test(waEl.value.trim())) {
+      waEl.classList.add('error');
+      showToast('No. WhatsApp harus terdiri dari 8-15 digit angka.');
+      waEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     if (!setuju1El.checked || !setuju2El.checked) {
-      alert('Harap centang seluruh kotak persetujuan.');
+      showToast('Harap centang seluruh kotak persetujuan.');
       return;
     }
 
     loadingEl.classList.add('active');
     lanjutBtn.disabled = true;
-    lanjutBtn.innerText = 'Memproses...';
+    lanjutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> MEMPROSES...';
 
-    // Siapkan data untuk dikirim ke Formspree
+    // Siapkan data untuk dikirim
     const orderData = {
       nama: namaEl.value, 
       wa: waEl.value, 
@@ -336,19 +375,20 @@
       total_bayar: totalPrice
     };
 
-    // Simpan ke LocalStorage sebagai cadangan
+    // Simpan ke LocalStorage sebagai cadangan utama
     try {
       localStorage.setItem('protix_order', JSON.stringify(orderData));
     } catch(e) {}
 
-    // Kirim data ke Formspree
+    // Kirim data ke Formspree (keepalive: true agar tidak tercancel saat redirect)
     fetch('https://formspree.io/f/mojojdpl', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(orderData)
+      body: JSON.stringify(orderData),
+      keepalive: true
     }).catch(e => console.log('Formspree error:', e));
 
-    // Langsung redirect ke qris.html (bawa parameter URL juga)
+    // Langsung redirect ke qris.html (bawa parameter URL)
     const qrisParams = new URLSearchParams({
       nama: namaEl.value, 
       wa: waEl.value, 
