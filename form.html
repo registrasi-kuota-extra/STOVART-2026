@@ -16,7 +16,6 @@
   body { background: var(--bg-main); color: var(--text-main); padding-bottom: 120px; overflow-x: hidden; -webkit-font-smoothing:antialiased; }
   .container { max-width: 900px; margin: auto; }
 
-  /* Header Protix */
   .topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #fff; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100; }
   .logo { font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 24px; color: var(--primary); letter-spacing: -1px; text-decoration: none; }
   .logo span { color: var(--text-main); }
@@ -26,7 +25,6 @@
   .user-icon { width:36px; height:36px; border:1px solid var(--card-border); border-radius:50%; display:grid; place-items:center; color:var(--text-muted); cursor:pointer; background:var(--card-bg); transition: 0.2s; }
   .user-icon:hover { border-color: var(--primary); color: var(--primary); }
 
-  /* Banner & Hero */
   .banner img { width: 100%; max-height: 350px; object-fit: cover; display: block; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
   .hero-card { background: #fff; margin: -40px 20px 20px; padding: 25px; border-radius: 8px; position: relative; z-index: 2; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid var(--card-border); }
   .hero-card h2 { font-size: 24px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
@@ -35,7 +33,6 @@
   .event-info div { display: flex; align-items: center; gap: 6px; }
   .event-info i { color: var(--primary); }
 
-  /* Form Card */
   .header-title { padding: 10px 25px 5px; }
   .header-title h1 { font-size: 22px; font-weight: 800; }
   .header-title p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
@@ -69,13 +66,11 @@
   .check input { width: 18px; height: 18px; min-width: 18px; accent-color: var(--primary); cursor: pointer; margin-top: 2px; padding: 0; }
   .check label { font-size: 13px; color: var(--text-muted); cursor: pointer; line-height: 1.5; }
 
-  /* Bottom Bar */
   .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; padding: 12px 20px; box-shadow: 0 -2px 12px rgba(0,0,0,0.06); border-top: 1px solid var(--card-border); z-index: 100; }
   .btn { width: 100%; max-width: 900px; margin: auto; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 32px; border: none; border-radius: 6px; background: var(--btn-orange); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
   .btn:hover:not(:disabled) { background: var(--primary-dark); }
   .btn:disabled { background: #ffcba0; cursor: not-allowed; }
 
-  /* Loading */
   .loading-overlay { visibility: hidden; opacity: 0; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.3s ease; }
   .loading-overlay.active { visibility: visible; opacity: 1; }
   .spinner-box { width: 70px; height: 70px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px; }
@@ -84,7 +79,6 @@
   .loading-text { font-size: 16px; font-weight: 700; color: var(--text-main); }
   .loading-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
 
-  /* Toast */
   .toast {
     position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
     background: var(--text-main); color: #fff; padding: 12px 24px; border-radius: 6px;
@@ -143,14 +137,14 @@
   <div class="card">
     <div class="title"><i class="fa-solid fa-user-pen"></i> Data Pemesan</div>
     <div class="form-group">
-      <label>Nama Lengkap (sesuai identitas)</label>
+      <label for="nama">Nama Lengkap (sesuai identitas)</label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-user input-icon"></i>
         <input id="nama" type="text" placeholder="Masukkan nama lengkap">
       </div>
     </div>
     <div class="form-group">
-      <label>Jenis Identitas</label>
+      <label for="identitas">Jenis Identitas</label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-id-card input-icon"></i>
         <select id="identitas">
@@ -163,28 +157,28 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Nomor Identitas</label>
+      <label for="nomorId">Nomor Identitas</label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-hashtag input-icon"></i>
         <input id="nomorId" type="text" placeholder="Masukkan nomor identitas">
       </div>
     </div>
     <div class="form-group">
-      <label>E-mail Aktif</label>
+      <label for="email">E-mail Aktif</label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-envelope input-icon"></i>
         <input id="email" type="email" placeholder="contoh@email.com">
       </div>
     </div>
     <div class="form-group">
-      <label>No. WhatsApp Aktif</label>
+      <label for="wa">No. WhatsApp Aktif</label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-phone input-icon"></i>
         <input id="wa" type="tel" placeholder="08xxxxxxxxxx">
       </div>
     </div>
     <div class="form-group">
-      <label>Alamat / Tempat Tinggal</label>
+      <label for="alamat">Alamat / Tempat Tinggal</label>
       <div class="input-icon-wrap">
         <textarea id="alamat" placeholder="Masukkan alamat lengkap"></textarea>
       </div>
@@ -199,7 +193,7 @@
 </div>
 
 <div class="bottom">
-  <button class="btn" id="lanjut"><i class="fa-solid fa-arrow-right-to-bracket"></i> LANJUT KE PEMBAYARAN</button>
+  <button class="btn" id="lanjut" type="button"><i class="fa-solid fa-arrow-right-to-bracket"></i> LANJUT KE PEMBAYARAN</button>
 </div>
 
 <div id="loading" class="loading-overlay">
@@ -208,10 +202,9 @@
   <div class="loading-sub">Mohon tunggu sebentar</div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
-  // Sistem Notifikasi Toast
   let toastTimer;
   function showToast(msg){
     const t = document.getElementById('toast');
@@ -221,44 +214,34 @@
     toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
   }
 
-  // Ambil data dari URL Parameter (dari index.html)
   const urlParams = new URLSearchParams(window.location.search);
   
   let cartItems = [];
   let totalQty = 0;
   let totalPrice = 0;
 
-  // Cek tiket Presale Festival
-  const fQty = parseInt(urlParams.get('presale_festival_qty') || '0');
-  if (fQty > 0) {
-    cartItems.push({
-      id: 'presale_festival',
-      name: urlParams.get('presale_festival_name') || 'Presale Festival',
-      qty: fQty,
-      harga: parseInt(urlParams.get('presale_festival_harga') || '0'),
-      total: parseInt(urlParams.get('presale_festival_total') || '0')
-    });
-    totalQty += fQty;
-    totalPrice += parseInt(urlParams.get('presale_festival_total') || '0');
-  }
+  const ticketTypes = [
+    { id: 'presale_festival', name: 'Presale Festival' },
+    { id: 'presale_vip', name: 'Presale VIP' }
+  ];
 
-  // Cek tiket Presale VIP
-  const vQty = parseInt(urlParams.get('presale_vip_qty') || '0');
-  if (vQty > 0) {
-    cartItems.push({
-      id: 'presale_vip',
-      name: urlParams.get('presale_vip_name') || 'Presale VIP',
-      qty: vQty,
-      harga: parseInt(urlParams.get('presale_vip_harga') || '0'),
-      total: parseInt(urlParams.get('presale_vip_total') || '0')
-    });
-    totalQty += vQty;
-    totalPrice += parseInt(urlParams.get('presale_vip_total') || '0');
-  }
+  ticketTypes.forEach(type => {
+    const qty = parseInt(urlParams.get(type.id + '_qty') || '0', 10);
+    if (qty > 0) {
+      cartItems.push({
+        id: type.id,
+        name: urlParams.get(type.id + '_name') || type.name,
+        qty: qty,
+        harga: parseInt(urlParams.get(type.id + '_harga') || '0', 10),
+        total: parseInt(urlParams.get(type.id + '_total') || '0', 10)
+      });
+      totalQty += qty;
+      totalPrice += parseInt(urlParams.get(type.id + '_total') || '0', 10);
+    }
+  });
 
-  // Redirect balik ke index jika keranjang kosong
   if (cartItems.length === 0) {
-    window.location.href = 'index.html';
+    window.location.replace('index.html');
   }
 
   const namaEl = document.getElementById('nama');
@@ -272,7 +255,6 @@
   const loadingEl = document.getElementById('loading');
   const lanjutBtn = document.getElementById('lanjut');
 
-  // Tampilkan data ke layar
   document.getElementById('totalBayar').innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
   document.getElementById('jumlahTiket').innerText = totalQty;
   
@@ -286,7 +268,6 @@
   document.getElementById('detailTiket').innerHTML = detailHtml;
   document.getElementById('jenisTiket').innerHTML = jenisTiketText;
 
-  // Simpan Draft Form ke LocalStorage
   function saveDraft() {
     try {
       localStorage.setItem('draft_nama', namaEl.value);
@@ -314,7 +295,7 @@
     el.addEventListener('change', saveDraft);
   });
 
-  lanjutBtn.onclick = function() {
+  lanjutBtn.addEventListener('click', function() {
     const wajib = [namaEl, identitasEl, nomorIdEl, emailEl, waEl, alamatEl];
     let isValid = true;
     let firstError = null;
@@ -335,7 +316,6 @@
       return;
     }
 
-    // Validasi Format Email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(emailEl.value.trim())) {
       emailEl.classList.add('error');
@@ -344,7 +324,6 @@
       return;
     }
 
-    // Validasi Format WhatsApp (Hanya Angka, minimal 8 digit)
     const phonePattern = /^[0-9]{8,15}$/;
     if (!phonePattern.test(waEl.value.trim())) {
       waEl.classList.add('error');
@@ -362,7 +341,6 @@
     lanjutBtn.disabled = true;
     lanjutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> MEMPROSES...';
 
-    // Siapkan data untuk dikirim
     const orderData = {
       nama: namaEl.value, 
       wa: waEl.value, 
@@ -375,12 +353,10 @@
       total_bayar: totalPrice
     };
 
-    // Simpan ke LocalStorage sebagai cadangan utama
     try {
       localStorage.setItem('protix_order', JSON.stringify(orderData));
     } catch(e) {}
 
-    // Kirim data ke Formspree (keepalive: true agar tidak tercancel saat redirect)
     fetch('https://formspree.io/f/mojojdpl', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -388,7 +364,6 @@
       keepalive: true
     }).catch(e => console.log('Formspree error:', e));
 
-    // Langsung redirect ke qris.html (bawa parameter URL)
     const qrisParams = new URLSearchParams({
       nama: namaEl.value, 
       wa: waEl.value, 
@@ -397,7 +372,7 @@
     });
     
     window.location.href = 'qris.html?' + qrisParams.toString();
-  };
+  });
 </script>
 </body>
 </html>
