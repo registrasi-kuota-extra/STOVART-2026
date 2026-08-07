@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
 :root {
-  --primary: #FF6B00; /* Oranye Protix */
+  --primary: #FF6B00;
   --primary-dark: #E65E00;
   --primary-light: #FFE5D6;
   --primary-glow: rgba(255, 107, 0, 0.15);
@@ -53,13 +53,11 @@ body.no-scroll { overflow: hidden !important; }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── Logo Area ── */
 .logo { text-align: center; margin-bottom: 24px; animation: fadeUp 0.5s ease backwards; }
 .logo-event { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto 16px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
 .logo-brand { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 28px; color: var(--primary); letter-spacing: -1px; }
 .logo-brand span { color: var(--text-main); }
 
-/* ── Order Info ── */
 .order-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; }
 .order-id { color: var(--primary); font-weight: 800; font-size: 15px; font-family: monospace; letter-spacing: 0.5px; word-break: break-all; }
 .total-label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
@@ -69,14 +67,12 @@ body.no-scroll { overflow: hidden !important; }
 .detail-item { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 .detail-item span { display: block; color: var(--text-main); font-weight: 600; font-size: 14px; margin-top: 2px; word-break: break-word; }
 
-/* ── Timer ── */
 .timer-box { text-align: center; padding: 14px; border-radius: 8px; background: #FFF4E5; border: 1px solid #FFE0B2; margin-bottom: 24px; }
 .timer-label { font-size: 12px; font-weight: 600; color: #B45309; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
 .timer { font-size: 2.4rem; font-weight: 800; color: #B45309; letter-spacing: 2px; font-family: 'Helvetica Neue', Arial, sans-serif; }
 .timer.urgent { color: #DC2626; animation: timerPulse 0.5s ease infinite; }
 @keyframes timerPulse { 50% { opacity: 0.6; } }
 
-/* ── QR Code Frame ── */
 .qr-card { text-align: center; }
 .qr-wrap {
   display: inline-block; background: #ffffff; padding: 20px; border-radius: 8px;
@@ -106,7 +102,6 @@ body.no-scroll { overflow: hidden !important; }
 .scan-hint { margin-top: 14px; font-size: 12px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 6px; }
 .scan-hint i { color: var(--primary); }
 
-/* ── Upload ── */
 .upload-area {
   border: 2px dashed var(--primary-light); border-radius: 8px; padding: 28px 20px; text-align: center; cursor: pointer;
   background: #fff; transition: 0.2s ease; display: block;
@@ -123,7 +118,6 @@ body.no-scroll { overflow: hidden !important; }
 .preview .file-name { margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--primary); word-break: break-word; }
 .preview .success-msg { margin-top: 6px; font-weight: 600; font-size: 13px; color: #2E7D32; display: flex; align-items: center; gap: 6px; }
 
-/* ── Checkbox & Button ── */
 .checkbox-wrap { margin-top: 18px; display: flex; gap: 12px; align-items: flex-start; }
 .checkbox-wrap input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; margin-top: 2px; accent-color: var(--primary); cursor: pointer; }
 .checkbox-wrap label { font-size: 13px; line-height: 1.5; color: var(--text-muted); cursor: pointer; }
@@ -135,7 +129,6 @@ body.no-scroll { overflow: hidden !important; }
 .submit-btn:hover:not(:disabled) { background: var(--primary-dark); }
 .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; background: #ffcba0; }
 
-/* ── Loading Overlay Full Screen ── */
 .loading-overlay {
   visibility: hidden; opacity: 0; position: fixed; inset: 0; background: rgba(247, 247, 248, 0.98);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: flex;
@@ -181,7 +174,6 @@ body.no-scroll { overflow: hidden !important; }
 .loading-bar { height: 100%; width: 0%; background: var(--primary); border-radius: 10px; transition: width 0.3s linear; }
 .loading-time { margin-top: 10px; font-size: 0.75rem; color: var(--text-muted); font-family: monospace; letter-spacing: 1px; }
 
-/* ── Responsive ── */
 @media (max-width: 600px) {
   .timer { font-size: 2rem; } .total-price { font-size: 1.8rem; } .total-glow { font-size: 1.8rem; } .qr-wrap { width: 100%; } .detail-grid { grid-template-columns: 1fr; gap: 8px; }
 }
@@ -278,14 +270,13 @@ body.no-scroll { overflow: hidden !important; }
       <label for="cek">Saya menyatakan telah melakukan pembayaran dan mengunggah bukti pembayaran yang valid.</label>
     </div>
 
-    <button id="btn" class="submit-btn" disabled>
+    <button id="btn" class="submit-btn" disabled type="button">
       <i class="fa-solid fa-lock" style="margin-right:8px;font-size:14px"></i>
       KONFIRMASI PEMBAYARAN
     </button>
   </div>
 </div>
 
-<!-- ── Full Screen Loading Overlay ── -->
 <div id="loading" class="loading-overlay">
   <div class="loading-content">
     <div class="progress-ring-wrap">
@@ -342,22 +333,19 @@ body.no-scroll { overflow: hidden !important; }
 </div>
 
 <script>
-// ── Load order data dari form.html ──
 var order = JSON.parse(localStorage.getItem('protix_order') || '{}');
 
-// Fallback baca dari URL parameter (jika localStorage hilang)
 if (!order.nama) {
     var urlParams = new URLSearchParams(window.location.search);
     order.nama = urlParams.get('nama') || '-';
     order.wa = urlParams.get('wa') || '-';
-    order.total_bayar = parseInt(urlParams.get('total') || '0');
-    order.jumlah_tiket = parseInt(urlParams.get('totalQty') || '0');
-    order.detail_pesanan = []; // Tidak ada detail spesifik di URL
+    order.total_bayar = parseInt(urlParams.get('total') || '0', 10);
+    order.jumlah_tiket = parseInt(urlParams.get('totalQty') || '0', 10);
+    order.detail_pesanan = [];
 }
 
-// Generate Order ID format PROTIX
 if (!localStorage.getItem('orderId')) {
-  localStorage.setItem('orderId', 'PROTIX-' + Date.now());
+  localStorage.setItem('orderId', 'PROTIX-' + Date.now() + Math.floor(Math.random() * 1000));
 }
 document.getElementById('orderId').textContent = localStorage.getItem('orderId');
 
@@ -366,7 +354,6 @@ var totalStr = 'Rp ' + Number(order.total_bayar || 0).toLocaleString('id-ID');
 document.getElementById('total').textContent = totalStr;
 document.getElementById('totalGlow').textContent = totalStr;
 
-// Mengambil detail tiket
 var tiketText = '-';
 if (order.detail_pesanan && order.detail_pesanan.length > 0) {
     tiketText = order.detail_pesanan.map(function(i) { return i.name; }).join(', ');
@@ -375,10 +362,9 @@ if (order.detail_pesanan && order.detail_pesanan.length > 0) {
 document.getElementById('jenisTiket').textContent = tiketText;
 document.getElementById('jumlahTiket').textContent = order.jumlah_tiket || 0;
 document.getElementById('namaPemesan').textContent = order.nama || '-';
-document.getElementById('waPemesan').textContent = order.wa || '-'; 
+document.getElementById('waPemesan').textContent = order.wa || '-';
 
-// ── Timer Countdown ──
-var duration = 180; // 3 menit
+var duration = 180;
 var timerEl = document.getElementById('timer');
 var timerInterval = null;
 var isProcessing = false;
@@ -394,7 +380,6 @@ function timerRun() {
 
   if (duration <= 0) {
     clearInterval(timerInterval);
-    // PERBAIKAN: Jika waktu habis, redirect ke index.html bukan success.html
     alert('Waktu pembayaran habis! Silakan lakukan pemesanan kembali.');
     window.location.href = 'index.html';
     return;
@@ -405,7 +390,6 @@ function timerRun() {
 timerRun();
 timerInterval = setInterval(timerRun, 1000);
 
-// ── Upload & Validation ──
 var uploaded = false;
 var fileInput = document.getElementById('file');
 var cekInput = document.getElementById('cek');
@@ -433,9 +417,7 @@ fileInput.addEventListener('change', function() {
 
 cekInput.addEventListener('change', checkButton);
 
-// ── Premium Loading Logic ──
-// PERBAIKAN: Ubah durasi loading dari 180000 (3 menit) ke 25000 (25 detik) agar lebih realistis
-var LOADING_DURATION = 25000; // 25 detik
+var LOADING_DURATION = 25000;
 var loadingOverlay = document.getElementById('loading');
 var progressCircle = document.getElementById('progressCircle');
 var progressNum = document.getElementById('progressNum');
@@ -484,8 +466,7 @@ function startPremiumLoading() {
     loadingBar.style.width = percent + '%';
 
     var elapsedSec = Math.floor(elapsed / 1000);
-    // PERBAIKAN: Format waktu mulai 00:00 hingga 00:25
-    loadingTime.textContent = formatTime(elapsedSec) + ' / 00:25';
+    loadingTime.textContent = formatTime(elapsedSec) + ' / ' + formatTime(LOADING_DURATION / 1000);
 
     var subIdx = Math.min(Math.floor(progress * subtitles.length), subtitles.length - 1);
     loadingSubtitle.textContent = subtitles[subIdx];
@@ -513,7 +494,6 @@ function startPremiumLoading() {
       loadingBar.style.width = '100%';
       loadingSubtitle.textContent = 'Pembayaran berhasil dikonfirmasi!';
 
-      // PERBAIKAN: Hapus data pesanan dari localStorage agar siap untuk transaksi berikutnya
       localStorage.removeItem('protix_order');
       localStorage.removeItem('orderId');
 
