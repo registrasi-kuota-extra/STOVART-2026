@@ -4,195 +4,370 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Protix — Stovart 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
     --primary:#E6007E;--primary-dark:#C5006E;--primary-light:#FFE5F1;
-    --ink:#1a1a1a;--ink-soft:#4a4a4a;--muted:#8a8a8a;
-    --line:#e8e8e8;--bg:#f7f7f8;--white:#fff;
-    --success:#2E7D32;
-    --btn-orange:#FF6B00;
+    --ink:#111111;--ink-soft:#3a3a3a;--muted:#7a7a7a;
+    --line:rgba(0,0,0,0.07);--bg:#f4f4f5;--white:#ffffff;
+    --success:#16a34a;--success-bg:#f0fdf4;--success-border:#bbf7d0;
+    --soldout:#dc2626;--soldout-bg:#fef2f2;--soldout-border:#fecaca;
+    --btn-orange:#FF6B00;--btn-orange-hover:#E05F00;--btn-orange-disabled:#FBD5A8;
+    --card-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --card-shadow-hover:0 8px 25px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    --card-shadow-soldout:0 0 0 0 transparent;
+    --radius:12px;--radius-sm:8px;
   }
+  html{scroll-behavior:smooth}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
-    background:var(--bg);color:var(--ink);line-height:1.5;
-    padding-bottom:90px;-webkit-font-smoothing:antialiased;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;
+    padding-bottom:100px;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,107,0,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(230,0,126,0.04) 0%, transparent 50%);
   }
   a{text-decoration:none;color:inherit}
-  button{font-family:inherit}
+  button{font-family:inherit;outline:none}
 
-  .header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}
-  .header-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-  .logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:24px;color:var(--btn-orange);letter-spacing:-1px}
-  .logo span{color:var(--ink)}
-  .header-right{display:flex;align-items:center;gap:12px}
+  /* ===== HEADER ===== */
+  .header{
+    background:rgba(255,255,255,0.82);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:100;
+  }
+  .header-inner{
+    max-width:960px;margin:0 auto;padding:12px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo-link{display:flex;align-items:center;gap:10px}
+  .logo-img{height:32px;width:auto;border-radius:6px}
+  .logo-text{
+    font-family:'Space Grotesk','Inter',sans-serif;font-weight:800;
+    font-size:22px;color:var(--btn-orange);letter-spacing:-0.8px;
+  }
+  .logo-text span{color:var(--ink)}
+  .header-right{display:flex;align-items:center;gap:10px}
   .lang-selector{
-    display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);
-    cursor:pointer;padding:7px 10px;border:1px solid var(--line);border-radius:4px;background:var(--white);
+    display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink-soft);
+    cursor:pointer;padding:6px 10px;border:1px solid var(--line);border-radius:var(--radius-sm);
+    background:var(--white);font-weight:500;transition:all .2s;
   }
+  .lang-selector:hover{border-color:#ccc;background:#fafafa}
   .user-icon{
-    width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
-    display:grid;place-items:center;color:var(--ink-soft);cursor:pointer;background:var(--white);
+    width:34px;height:34px;border:1px solid var(--line);border-radius:50%;
+    display:grid;place-items:center;color:var(--ink-soft);cursor:pointer;
+    background:var(--white);transition:all .2s;
   }
+  .user-icon:hover{border-color:#bbb;background:#fafafa}
 
+  /* ===== STEPS ===== */
   .steps{background:var(--white);border-bottom:1px solid var(--line)}
-  .steps-inner{max-width:1100px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto}
+  .steps-inner{
+    max-width:960px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;gap:0;overflow-x:auto;
+  }
   .step{display:flex;align-items:center;gap:8px;flex-shrink:0}
   .step-num{
-    width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
-    font-weight:600;font-size:13px;background:#eee;color:var(--muted);transition:all .2s;
+    width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+    font-weight:700;font-size:12px;
+    background:#f0f0f0;color:var(--muted);transition:all .35s cubic-bezier(.4,0,.2,1);
+    position:relative;
   }
-  .step.active .step-num{background:var(--btn-orange);color:var(--white)}
-  .step-label{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
-  .step.active .step-label{color:var(--ink);font-weight:600}
-  .step-divider{width:28px;height:1px;background:var(--line);margin:0 4px;flex-shrink:0}
-  @media(max-width:640px){.step-label{display:none}.step-divider{width:14px}}
+  .step.active .step-num{
+    background:var(--btn-orange);color:var(--white);
+    box-shadow:0 2px 10px rgba(255,107,0,0.35);
+  }
+  .step-label{font-size:12px;color:var(--muted);font-weight:500;white-space:nowrap}
+  .step.active .step-label{color:var(--ink);font-weight:700}
+  .step-divider{
+    width:32px;height:2px;background:#e8e8e8;margin:0 8px;flex-shrink:0;
+    border-radius:2px;transition:background .3s;
+  }
+  .step.active+.step-divider,.step-divider.passed{background:var(--btn-orange);opacity:.3}
+  @media(max-width:640px){
+    .step-label{display:none}
+    .step-divider{width:16px;margin:0 4px}
+    .steps-inner{padding:14px 16px}
+  }
 
-  .container{max-width:880px;margin:0 auto;padding:24px 20px}
+  /* ===== CONTAINER ===== */
+  .container{max-width:800px;margin:0 auto;padding:28px 24px}
 
+  /* ===== BANNER ===== */
   .event-banner{
-    width:100%;aspect-ratio:16/7;border-radius:8px;overflow:hidden;
-    position:relative;margin-bottom:24px;background:#eee;
+    width:100%;aspect-ratio:16/7.5;border-radius:var(--radius);overflow:hidden;
+    position:relative;margin-bottom:28px;background:#e8e8e8;
+    box-shadow:0 4px 20px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.04);
   }
-  .event-banner img{width:100%;height:100%;object-fit:cover;display:block}
+  .event-banner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+  .event-banner:hover img{transform:scale(1.02)}
+  .event-banner::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.15) 100%);
+    pointer-events:none;
+  }
 
-  .event-header{margin-bottom:32px}
+  /* ===== EVENT HEADER ===== */
+  .event-header{margin-bottom:36px}
   .event-meta{
-    display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);
-    margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;
+    display:inline-flex;align-items:center;gap:8px;font-size:10px;color:var(--muted);
+    margin-bottom:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;
+    background:var(--white);padding:6px 14px;border-radius:20px;
+    border:1px solid var(--line);
   }
-  .event-meta-dot{width:3px;height:3px;background:var(--muted);border-radius:50%}
+  .event-meta-dot{width:3px;height:3px;background:#ccc;border-radius:50%}
   .event-title{
-    font-family:'Helvetica Neue',Arial,sans-serif;font-size:28px;font-weight:800;
-    line-height:1.15;margin-bottom:14px;letter-spacing:-0.5px;
+    font-family:'Space Grotesk','Inter',sans-serif;font-size:30px;font-weight:800;
+    line-height:1.15;margin-bottom:20px;letter-spacing:-0.8px;color:var(--ink);
   }
-  .event-info{display:flex;flex-wrap:wrap;gap:24px;font-size:14px}
-  .event-info-item{display:flex;align-items:flex-start;gap:10px}
-  .event-info-item svg{flex-shrink:0;margin-top:2px;color:var(--btn-orange)}
-  .event-info-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:2px;font-weight:600}
-  .event-info-value{font-weight:500;color:var(--ink);font-size:13px}
+  .event-info{display:flex;flex-wrap:wrap;gap:20px;font-size:14px}
+  .event-info-item{
+    display:flex;align-items:flex-start;gap:12px;
+    background:var(--white);padding:14px 18px;border-radius:var(--radius-sm);
+    border:1px solid var(--line);flex:1;min-width:200px;
+    transition:box-shadow .2s;
+  }
+  .event-info-item:hover{box-shadow:var(--card-shadow-hover)}
+  .event-info-icon{
+    width:36px;height:36px;border-radius:8px;
+    background:linear-gradient(135deg,#FFF5EB,#FFE8D6);
+    display:grid;place-items:center;flex-shrink:0;
+  }
+  .event-info-icon svg{color:var(--btn-orange)}
+  .event-info-label{
+    font-size:10px;color:var(--muted);text-transform:uppercase;
+    letter-spacing:0.8px;display:block;margin-bottom:2px;font-weight:700;
+  }
+  .event-info-value{font-weight:600;color:var(--ink);font-size:13px;line-height:1.4}
 
-  .ticket-section{margin-bottom:32px}
+  /* ===== TICKET SECTION ===== */
+  .ticket-section{margin-bottom:20px}
   .section-title{
-    font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:10px;
-    border-bottom:2px solid var(--ink);display:flex;align-items:baseline;justify-content:space-between;
+    font-size:14px;font-weight:800;margin-bottom:16px;
+    display:flex;align-items:center;justify-content:space-between;
+    text-transform:uppercase;letter-spacing:1px;color:var(--ink);
   }
-  .section-title small{font-size:11px;font-weight:400;color:var(--muted)}
+  .section-title small{font-size:11px;font-weight:500;color:var(--muted);text-transform:none;letter-spacing:0}
 
+  /* ===== TICKET CARD ===== */
   .ticket-card{
-    background:var(--white);border:1px solid var(--line);border-radius:8px;
-    margin-bottom:10px;overflow:hidden;transition:border-color .15s;
+    background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius);
+    margin-bottom:12px;overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1);
+    box-shadow:var(--card-shadow);position:relative;
   }
-  .ticket-card:hover{border-color:#d0d0d0}
-  .ticket-card-inner{padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-  .ticket-info{flex:1;min-width:0}
-  .ticket-name{font-size:16px;font-weight:700;margin-bottom:4px;color:var(--ink)}
-  .ticket-desc{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.5}
-  .ticket-price{font-size:18px;font-weight:700;color:var(--btn-orange);font-family:'Helvetica Neue',Arial,sans-serif}
-  .ticket-price small{font-size:12px;font-weight:400;color:var(--muted);font-family:inherit}
-  .ticket-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-  .badge{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase}
-  .badge-sale{background:#e6ffe6;color:var(--success);border:1px solid #b3e6b3}
-  .badge-soldout{background:#ffebee;color:#d32f2f;border:1px solid #ffcdd2}
+  .ticket-card:not(.sold-out):hover{
+    border-color:rgba(255,107,0,0.25);
+    box-shadow:var(--card-shadow-hover);
+    transform:translateY(-1px);
+  }
 
+  /* --- SOLD OUT STATE --- */
+  .ticket-card.sold-out{
+    opacity:.55;pointer-events:none;user-select:none;cursor:default;
+    box-shadow:none;border-style:dashed;border-color:#ddd;
+    filter:saturate(0);
+  }
+  .ticket-card.sold-out *{pointer-events:none!important;cursor:default!important}
+  .ticket-card.sold-out .ticket-name{text-decoration:line-through;text-decoration-color:#ccc}
+
+  .ticket-card-inner{
+    padding:22px 24px;display:flex;justify-content:space-between;
+    align-items:flex-start;gap:24px;
+  }
+  .ticket-info{flex:1;min-width:0}
+  .ticket-name{font-size:16px;font-weight:800;margin-bottom:6px;color:var(--ink);letter-spacing:-0.2px}
+  .ticket-desc{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6}
+  .ticket-price{
+    font-family:'Space Grotesk','Inter',sans-serif;
+    font-size:20px;font-weight:800;color:var(--btn-orange);letter-spacing:-0.5px;
+  }
+  .ticket-price small{font-size:12px;font-weight:500;color:var(--muted);font-family:'Inter',sans-serif}
+  .ticket-badges{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+  .badge{
+    font-size:9px;padding:4px 10px;border-radius:5px;font-weight:800;
+    letter-spacing:0.8px;text-transform:uppercase;
+  }
+  .badge-available{background:var(--success-bg);color:var(--success);border:1px solid var(--success-border)}
+  .badge-soldout{background:var(--soldout-bg);color:var(--soldout);border:1px solid var(--soldout-border)}
+
+  /* --- SOLD OUT OVERLAY --- */
+  .soldout-overlay{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    z-index:2;
+  }
+  .soldout-stamp{
+    font-family:'Space Grotesk','Inter',sans-serif;font-size:28px;font-weight:900;
+    color:rgba(220,38,38,0.18);letter-spacing:6px;text-transform:uppercase;
+    transform:rotate(-12deg);border:4px solid rgba(220,38,38,0.12);
+    padding:6px 28px;border-radius:8px;
+  }
+
+  /* --- TICKET ACTION --- */
   .ticket-action{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}
 
-  .qty-control{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  /* --- QTY CONTROL --- */
+  .qty-control{
+    display:flex;align-items:center;
+    border:1.5px solid var(--line);border-radius:var(--radius-sm);
+    overflow:hidden;background:var(--white);
+    transition:border-color .2s,box-shadow .2s;
+  }
+  .qty-control:focus-within{
+    border-color:var(--btn-orange);
+    box-shadow:0 0 0 3px rgba(255,107,0,0.1);
+  }
   .qty-btn{
-    width:36px;height:36px;background:var(--white);border:none;cursor:pointer;
-    font-size:18px;color:var(--ink);display:grid;place-items:center;transition:background .15s;
+    width:40px;height:40px;background:var(--white);border:none;cursor:pointer;
+    font-size:20px;color:var(--ink);display:grid;place-items:center;
+    transition:all .15s;font-weight:500;line-height:1;
   }
-  .qty-btn:hover:not(:disabled){background:var(--bg)}
-  .qty-btn:disabled{color:var(--muted);cursor:not-allowed}
-  .qty-value{width:40px;text-align:center;font-size:14px;font-weight:600}
+  .qty-btn:hover:not(:disabled){background:#f8f8f8;color:var(--btn-orange)}
+  .qty-btn:active:not(:disabled){background:#f0f0f0;transform:scale(.92)}
+  .qty-btn:disabled{color:#d0d0d0;cursor:not-allowed}
+  .qty-value{
+    width:44px;text-align:center;font-size:15px;font-weight:800;
+    font-family:'Space Grotesk','Inter',sans-serif;
+    color:var(--ink);border-left:1px solid var(--line);border-right:1px solid var(--line);
+    height:40px;display:flex;align-items:center;justify-content:center;
+    background:#fafafa;
+  }
+  .qty-hint{font-size:10px;color:var(--muted);text-align:right;font-weight:500}
 
-  .ticket-warning{
-    margin-top:15px;text-align:center;font-size:14px;font-weight:800;
-    color:#d32f2f;background:#ffebee;border:1px solid #ffcdd2;
-    padding:10px;border-radius:6px;letter-spacing:1px;
-    animation:pulse-warning 1.5s infinite;
+  /* ===== DIVIDER LABEL ===== */
+  .section-divider{
+    display:flex;align-items:center;gap:14px;margin:28px 0 20px;
+  }
+  .section-divider::before,.section-divider::after{
+    content:'';flex:1;height:1px;background:var(--line);
+  }
+  .section-divider span{
+    font-size:10px;font-weight:800;color:var(--btn-orange);
+    text-transform:uppercase;letter-spacing:2px;white-space:nowrap;
   }
 
-  @keyframes pulse-warning {
-    0%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(211,47,47,0.4)}
-    50%{transform:scale(1.02);opacity:0.9;background-color:#ffcdd2;color:#b71c1c;box-shadow:0 0 0 5px rgba(211,47,47,0)}
-    100%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(211,47,47,0)}
+  /* ===== FOOTER ===== */
+  .footer{
+    background:var(--white);border-top:1px solid var(--line);
+    padding:44px 24px;margin-top:48px;text-align:center;
   }
-
-  .footer{background:var(--white);border-top:1px solid var(--line);padding:40px 20px;margin-top:40px;text-align:center}
-  .footer-logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:28px;color:var(--btn-orange);letter-spacing:-1px;margin-bottom:10px;display:inline-block}
+  .footer-logo{font-family:'Space Grotesk','Inter',sans-serif;font-weight:800;font-size:26px;color:var(--btn-orange);letter-spacing:-0.8px;display:inline-block;margin-bottom:12px}
   .footer-logo span{color:var(--ink)}
-  .footer p{font-size:12px;color:var(--muted);line-height:1.6}
-  .footer-contact{margin:15px 0;font-size:13px;color:var(--ink-soft)}
+  .footer p{font-size:12px;color:var(--muted);line-height:1.7}
+  .footer-contact{margin:16px 0;font-size:13px;color:var(--ink-soft)}
   .footer-contact div{margin-bottom:5px}
-  .footer-copy{margin-top:15px;font-size:11px;color:#aaa}
+  .footer-copy{margin-top:18px;font-size:11px;color:#bbb}
 
+  /* ===== STICKY BAR ===== */
   .sticky-bar{
-    position:fixed;bottom:0;left:0;right:0;background:var(--white);
-    border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(0,0,0,0.06);
-    z-index:90;padding:14px 20px;
+    position:fixed;bottom:0;left:0;right:0;z-index:90;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-top:1px solid var(--line);
+    box-shadow:0 -4px 30px rgba(0,0,0,0.06);
+    padding:16px 24px;
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
   }
-  .sticky-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .sticky-inner{
+    max-width:960px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;gap:20px;
+  }
   .sticky-total{display:flex;flex-direction:column}
-  .sticky-total-label{font-size:12px;color:var(--muted);font-weight:500}
-  .sticky-total-value{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-0.5px;font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.2}
+  .sticky-total-label{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:0.3px}
+  .sticky-total-value{
+    font-family:'Space Grotesk','Inter',sans-serif;
+    font-size:22px;font-weight:800;color:var(--ink);
+    letter-spacing:-0.5px;line-height:1.2;
+    transition:color .3s;
+  }
+  .sticky-total-value.has-value{color:var(--btn-orange)}
 
+  /* --- BUTTON --- */
   .btn-checkout{
-    background:var(--btn-orange);color:var(--white);border:none;padding:14px 32px;
-    border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;
-    letter-spacing:0.3px;
+    background:var(--btn-orange);color:var(--white);border:none;
+    padding:15px 36px;border-radius:var(--radius-sm);
+    font-size:14px;font-weight:700;cursor:pointer;
+    transition:all .25s cubic-bezier(.4,0,.2,1);
+    letter-spacing:0.3px;position:relative;overflow:hidden;
   }
-  .btn-checkout:hover:not(:disabled){background:#e65e00}
-  .btn-checkout:disabled{background:#ffcba0;cursor:not-allowed}
-
-  .btn-soldout{
-    background:#eee;color:#999;border:none;padding:12px 24px;
-    border-radius:6px;font-size:14px;font-weight:700;cursor:not-allowed;
+  .btn-checkout::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,0.15) 0%,transparent 50%);
+    pointer-events:none;
   }
-
-  @media(max-width:480px){
-    .btn-checkout{padding:12px 20px;font-size:14px}
-    .sticky-total-value{font-size:18px}
-    .container{padding:16px 14px}
-    .ticket-card-inner{padding:14px;flex-direction:column;gap:14px}
-    .ticket-action{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
+  .btn-checkout:hover:not(:disabled){
+    background:var(--btn-orange-hover);
+    box-shadow:0 4px 18px rgba(255,107,0,0.35);
+    transform:translateY(-1px);
   }
+  .btn-checkout:active:not(:disabled){transform:translateY(0);box-shadow:0 2px 8px rgba(255,107,0,0.25)}
+  .btn-checkout:disabled{
+    background:var(--btn-orange-disabled);cursor:not-allowed;
+    box-shadow:none;transform:none;
+  }
+  .btn-checkout:disabled::before{display:none}
 
+  /* ===== TOAST ===== */
   .toast{
-    position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(20px);
-    background:var(--ink);color:var(--white);padding:10px 20px;border-radius:6px;
-    font-size:13px;opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center;
+    position:fixed;bottom:120px;left:50%;
+    transform:translateX(-50%) translateY(16px);
+    background:var(--ink);color:var(--white);
+    padding:12px 24px;border-radius:var(--radius-sm);
+    font-size:13px;font-weight:500;opacity:0;pointer-events:none;
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    z-index:200;max-width:88vw;text-align:center;
+    box-shadow:0 8px 30px rgba(0,0,0,0.2);
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-  @media(max-width:480px){
-    .toast{bottom:120px}
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:520px){
+    .container{padding:20px 16px}
+    .event-title{font-size:24px}
+    .event-info{flex-direction:column;gap:10px}
+    .event-info-item{min-width:auto}
+    .ticket-card-inner{padding:16px 18px;flex-direction:column;gap:16px}
+    .ticket-action{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
+    .btn-checkout{padding:13px 22px;font-size:13px}
+    .sticky-total-value{font-size:19px}
+    .sticky-inner{padding:0}
+    .header-inner{padding:10px 16px}
+    .soldout-stamp{font-size:22px;letter-spacing:4px;padding:4px 20px}
+    .event-banner{aspect-ratio:16/9}
   }
 
   @media(prefers-reduced-motion:reduce){
-    *{transition:none!important;animation:none!important}
+    *{transition-duration:0.01ms!important;animation:none!important}
   }
 </style>
 </head>
 <body>
 
+<!-- ===== HEADER ===== -->
 <header class="header">
   <div class="header-inner">
-    <a href="#" class="logo">Protix<span>.ID</span></a>
+    <a href="#" class="logo-link">
+      <img src="logo-event.png" alt="Logo Protix" class="logo-img">
+      <div class="logo-text">Protix<span>.ID</span></div>
+    </a>
     <div class="header-right">
-      <div class="lang-selector" id="langBtn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <div class="lang-selector" role="button" tabindex="0" aria-label="Pilih bahasa">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <span>ID</span>
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="user-icon" title="Masuk ke akun">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <div class="user-icon" role="button" tabindex="0" aria-label="Masuk ke akun" title="Masuk ke akun">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
     </div>
   </div>
 </header>
 
-<div class="steps">
+<!-- ===== STEPS ===== -->
+<nav class="steps" aria-label="Langkah pemesanan">
   <div class="steps-inner">
     <div class="step active">
       <div class="step-num">1</div>
@@ -214,14 +389,17 @@
       <div class="step-label">E-Tiket</div>
     </div>
   </div>
-</div>
+</nav>
 
+<!-- ===== MAIN ===== -->
 <main class="container">
 
+  <!-- Banner -->
   <div class="event-banner">
-    <img src="banner_stovart.png" alt="Banner Stovart 2026 - Karikatur Papan Catur dan Bunga">
+    <img src="banner-event.png" alt="Banner Stovart 2026 - Stovit Art Festival">
   </div>
 
+  <!-- Event Info -->
   <div class="event-header">
     <div class="event-meta">
       <span>Seni</span>
@@ -230,17 +408,21 @@
       <span class="event-meta-dot"></span>
       <span>Dewasa</span>
     </div>
-    <h1 class="event-title">Stovart 2026 - Stovit Art Festival</h1>
+    <h1 class="event-title">Stovart 2026 — Stovit Art Festival</h1>
     <div class="event-info">
       <div class="event-info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div class="event-info-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         <div>
           <span class="event-info-label">Tanggal</span>
           <span class="event-info-value">20 November 2026</span>
         </div>
       </div>
       <div class="event-info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="event-info-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
         <div>
           <span class="event-info-label">Lokasi</span>
           <span class="event-info-value">Halaman Outdoor Balai Pemuda</span>
@@ -249,95 +431,128 @@
     </div>
   </div>
 
-  <div class="ticket-section">
+  <!-- ===== TICKET SECTION ===== -->
+  <section class="ticket-section" aria-label="Daftar tiket">
     <div class="section-title">
       Pilih Tiket
       <small>Dipersembahkan oleh BEM FKG UNAIR</small>
     </div>
 
-    <div class="ticket-card" data-ticket="presale_festival" data-price="70000" data-name="Presale Festival - Stovart 2026" data-stock="50">
+    <!-- PRE-SALE FESTIVAL — SOLD OUT -->
+    <div class="ticket-card sold-out" aria-disabled="true">
+      <div class="soldout-overlay"><div class="soldout-stamp">Sold Out</div></div>
       <div class="ticket-card-inner">
         <div class="ticket-info">
-          <div class="ticket-name">PRESALE FESTIVAL</div>
-          <div class="ticket-desc">Tiket festival reguler untuk menikmati rangkaian acara Stovit Art Festival 2026.</div>
-          <div class="ticket-price">Rp 70.000 <small>/tiket</small></div>
-          <div class="ticket-badges">
-            <span class="badge badge-sale">On Sale</span>
-          </div>
-        </div>
-        <div class="ticket-action">
-          <div class="qty-control">
-            <button class="qty-btn qty-minus" aria-label="Kurangi" type="button">−</button>
-            <div class="qty-value" role="status" aria-live="polite" aria-atomic="true">0</div>
-            <button class="qty-btn qty-plus" aria-label="Tambah" type="button">+</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ticket-card" data-ticket="presale_vip" data-price="150000" data-name="Presale VIP - Stovart 2026" data-stock="5">
-      <div class="ticket-card-inner">
-        <div class="ticket-info">
-          <div class="ticket-name">PRESALE VIP</div>
-          <div class="ticket-desc">Tiket VIP dengan fasilitas terbaik dan spot strategis (Max 5 tiket/orang).</div>
-          <div class="ticket-price">Rp 150.000 <small>/tiket</small></div>
-          <div class="ticket-badges">
-            <span class="badge badge-sale">On Sale</span>
-          </div>
-        </div>
-        <div class="ticket-action">
-          <div class="qty-control">
-            <button class="qty-btn qty-minus" aria-label="Kurangi" type="button">−</button>
-            <div class="qty-value" role="status" aria-live="polite" aria-atomic="true">0</div>
-            <button class="qty-btn qty-plus" aria-label="Tambah" type="button">+</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ticket-card" data-ticket="ots" data-price="100000" data-name="On The Spot - Stovart 2026" data-stock="0">
-      <div class="ticket-card-inner">
-        <div class="ticket-info">
-          <div class="ticket-name">ON THE SPOT</div>
-          <div class="ticket-desc">Tiket yang dibeli langsung di lokasi acara.</div>
-          <div class="ticket-price">Rp 100.000 <small>/tiket</small></div>
+          <div class="ticket-name">PRE-SALE FESTIVAL</div>
+          <div class="ticket-desc">Tiket festival pre-sale dengan harga spesial untuk menikmati rangkaian acara Stovit Art Festival 2026.</div>
+          <div class="ticket-price">Rp 80.000 <small>/tiket</small></div>
           <div class="ticket-badges">
             <span class="badge badge-soldout">Sold Out</span>
           </div>
         </div>
         <div class="ticket-action">
-          <button class="btn-soldout" disabled>Sold Out</button>
+          <button class="qty-btn" disabled style="width:auto;padding:0 20px;height:40px;font-size:11px;font-weight:700;letter-spacing:1px;color:#ccc;border:1.5px dashed #ddd;border-radius:var(--radius-sm);background:transparent">TIDAK TERSEDIA</button>
         </div>
       </div>
     </div>
 
-  </div>
+    <!-- PRE-SALE VIP — SOLD OUT -->
+    <div class="ticket-card sold-out" aria-disabled="true">
+      <div class="soldout-overlay"><div class="soldout-stamp">Sold Out</div></div>
+      <div class="ticket-card-inner">
+        <div class="ticket-info">
+          <div class="ticket-name">PRE-SALE VIP</div>
+          <div class="ticket-desc">Tiket VIP pre-sale dengan fasilitas terbaik dan spot strategis di area depan panggung utama.</div>
+          <div class="ticket-price">Rp 120.000 <small>/tiket</small></div>
+          <div class="ticket-badges">
+            <span class="badge badge-soldout">Sold Out</span>
+          </div>
+        </div>
+        <div class="ticket-action">
+          <button class="qty-btn" disabled style="width:auto;padding:0 20px;height:40px;font-size:11px;font-weight:700;letter-spacing:1px;color:#ccc;border:1.5px dashed #ddd;border-radius:var(--radius-sm);background:transparent">TIDAK TERSEDIA</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DIVIDER ===== -->
+    <div class="section-divider"><span>Tiket Reguler</span></div>
+
+    <!-- REGULER FESTIVAL — AVAILABLE -->
+    <div class="ticket-card" data-ticket="reguler_festival" data-price="100000" data-name="Reguler Festival - Stovart 2026" data-max="10">
+      <div class="ticket-card-inner">
+        <div class="ticket-info">
+          <div class="ticket-name">REGULER FESTIVAL</div>
+          <div class="ticket-desc">Tiket festival reguler untuk menikmati seluruh rangkaian acara Stovit Art Festival 2026.</div>
+          <div class="ticket-price">Rp 100.000 <small>/tiket</small></div>
+          <div class="ticket-badges">
+            <span class="badge badge-available">Available</span>
+          </div>
+        </div>
+        <div class="ticket-action">
+          <div class="qty-control">
+            <button class="qty-btn qty-minus" aria-label="Kurangi tiket Reguler Festival" type="button">−</button>
+            <div class="qty-value" role="status" aria-live="polite" aria-atomic="true">0</div>
+            <button class="qty-btn qty-plus" aria-label="Tambah tiket Reguler Festival" type="button">+</button>
+          </div>
+          <div class="qty-hint">Maks. 10 tiket</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGULER VIP — AVAILABLE -->
+    <div class="ticket-card" data-ticket="reguler_vip" data-price="150000" data-name="Reguler VIP - Stovart 2026" data-max="10">
+      <div class="ticket-card-inner">
+        <div class="ticket-info">
+          <div class="ticket-name">REGULER VIP</div>
+          <div class="ticket-desc">Tiket VIP reguler dengan akses area eksklusif, spot strategis, dan fasilitas premium.</div>
+          <div class="ticket-price">Rp 150.000 <small>/tiket</small></div>
+          <div class="ticket-badges">
+            <span class="badge badge-available">Available</span>
+          </div>
+        </div>
+        <div class="ticket-action">
+          <div class="qty-control">
+            <button class="qty-btn qty-minus" aria-label="Kurangi tiket Reguler VIP" type="button">−</button>
+            <div class="qty-value" role="status" aria-live="polite" aria-atomic="true">0</div>
+            <button class="qty-btn qty-plus" aria-label="Tambah tiket Reguler VIP" type="button">+</button>
+          </div>
+          <div class="qty-hint">Maks. 10 tiket</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
 
 </main>
 
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
   <a href="#" class="footer-logo">Protix<span>.ID</span></a>
   <div class="footer-contact">
-    <div>📞 085174296612</div>
-    <div>✉️ protix.id@gmail.com</div>
+    <div>&#128222; 085174296612</div>
+    <div>&#9993;&#65039; protix.id@gmail.com</div>
   </div>
   <p>Platform tiket resmi untuk Stovit Art Festival 2026.</p>
-  <p class="footer-copy">© 2025 Protix. All rights reserved.</p>
+  <p class="footer-copy">&copy; 2025 Protix. All rights reserved.</p>
 </footer>
 
-<div class="sticky-bar">
+<!-- ===== STICKY BAR ===== -->
+<div class="sticky-bar" id="stickyBar">
   <div class="sticky-inner">
     <div class="sticky-total">
       <span class="sticky-total-label">Total (<span id="totalQtyDisplay" aria-live="polite" aria-atomic="true">0</span> tiket)</span>
       <span class="sticky-total-value" id="stickyTotal" role="status" aria-live="polite" aria-atomic="true">Rp 0</span>
     </div>
-    <button class="btn-checkout" id="checkoutBtn" disabled type="button">Lanjutkan ke Pembayaran</button>
+    <button class="btn-checkout" id="checkoutBtn" disabled type="button" aria-label="Lanjutkan ke pembayaran">Lanjutkan ke Pembayaran</button>
   </div>
 </div>
 
+<!-- ===== TOAST ===== -->
 <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
+(function(){
+  /* --- Utilitas --- */
   const formatRp = n => 'Rp ' + n.toLocaleString('id-ID');
   let toastTimer;
 
@@ -346,12 +561,11 @@
     t.textContent = msg;
     t.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
   }
 
-  const cards = document.querySelectorAll('.ticket-card[data-ticket]');
-
-  let cart = {};
+  /* --- State keranjang --- */
+  const cart = {};
   let totalQty = 0;
   let totalPrice = 0;
 
@@ -359,93 +573,114 @@
   const totalQtyDisplay = document.getElementById('totalQtyDisplay');
   const checkoutBtn = document.getElementById('checkoutBtn');
 
-  cards.forEach(card => {
+  /* --- Hanya proses kartu yang punya data-ticket DAN bukan sold-out --- */
+  const activeCards = document.querySelectorAll('.ticket-card[data-ticket]:not(.sold-out)');
+
+  activeCards.forEach(card => {
     const id = card.dataset.ticket;
     const price = parseInt(card.dataset.price, 10);
     const name = card.dataset.name;
-    const stock = parseInt(card.dataset.stock, 10) || 0;
+    const maxQty = parseInt(card.dataset.max, 10) || 10;
 
-    cart[id] = { qty: 0, price: price, name: name, stock: stock };
+    cart[id] = { qty: 0, price, name, max: maxQty };
 
     const plusBtn = card.querySelector('.qty-plus');
+    const minusBtn = card.querySelector('.qty-minus');
 
-    if (plusBtn) {
-      const minusBtn = card.querySelector('.qty-minus');
+    plusBtn.addEventListener('click', () => {
+      if (cart[id].qty < cart[id].max) {
+        cart[id].qty++;
+        updateUI();
+      } else {
+        showToast('Maksimal pembelian ' + cart[id].max + ' tiket untuk kategori ini');
+      }
+    });
 
-      plusBtn.addEventListener('click', () => {
-        const maxLimit = Math.min(5, cart[id].stock);
-
-        if (cart[id].qty < maxLimit) {
-          cart[id].qty++;
-          updateUI();
-        } else {
-          if (cart[id].qty === cart[id].stock) {
-            showToast('Maaf, stok tiket ini sudah habis');
-          } else {
-            showToast('Maksimal pembelian 5 tiket per kategori');
-          }
-        }
-      });
-
-      minusBtn.addEventListener('click', () => {
-        if (cart[id].qty > 0) {
-          cart[id].qty--;
-          updateUI();
-        }
-      });
-    }
+    minusBtn.addEventListener('click', () => {
+      if (cart[id].qty > 0) {
+        cart[id].qty--;
+        updateUI();
+      }
+    });
   });
 
-  function updateUI() {
+  /* --- Update seluruh UI --- */
+  function updateUI(){
     totalQty = 0;
     totalPrice = 0;
 
-    cards.forEach(card => {
+    activeCards.forEach(card => {
       const id = card.dataset.ticket;
-      const qtyVal = card.querySelector('.qty-value');
+      const qtyEl = card.querySelector('.qty-value');
       const minusBtn = card.querySelector('.qty-minus');
+      const plusBtn = card.querySelector('.qty-plus');
 
-      if (qtyVal) {
-        qtyVal.textContent = cart[id].qty;
-      }
+      qtyEl.textContent = cart[id].qty;
 
-      if (minusBtn) {
-        minusBtn.disabled = (cart[id].qty === 0);
-      }
+      /* Nonaktifkan tombol minus saat qty = 0 */
+      minusBtn.disabled = (cart[id].qty === 0);
+
+      /* Nonaktifkan tombol plus saat qty = max */
+      plusBtn.disabled = (cart[id].qty >= cart[id].max);
 
       totalQty += cart[id].qty;
       totalPrice += (cart[id].qty * cart[id].price);
     });
 
+    /* Update sticky bar */
     totalQtyDisplay.textContent = totalQty;
     stickyTotal.textContent = formatRp(totalPrice);
+
+    /* Warna total berubah saat ada nilai */
+    if (totalQty > 0) {
+      stickyTotal.classList.add('has-value');
+    } else {
+      stickyTotal.classList.remove('has-value');
+    }
+
+    /* Tombol checkout AKTIF hanya jika minimal 1 tiket dipilih */
     checkoutBtn.disabled = (totalQty === 0);
   }
 
+  /* --- Redirect ke form.html --- */
   checkoutBtn.addEventListener('click', () => {
-    if (totalQty > 0) {
-      const params = new URLSearchParams();
-      let hasItems = false;
+    if (totalQty === 0) {
+      showToast('Silakan pilih minimal 1 tiket terlebih dahulu');
+      return;
+    }
 
-      Object.entries(cart).forEach(([id, item]) => {
-        if (item.qty > 0) {
-          params.append(id + '_name', item.name);
-          params.append(id + '_qty', item.qty);
-          params.append(id + '_harga', item.price);
-          params.append(id + '_total', item.qty * item.price);
-          hasItems = true;
-        }
-      });
+    /* Tandai tombol sebagai loading */
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Memproses...';
 
-      if (hasItems) {
-        window.location.href = 'form.html?' + params.toString();
+    /* Kumpulkan parameter */
+    const params = new URLSearchParams();
+    let hasItems = false;
+
+    Object.entries(cart).forEach(([id, item]) => {
+      if (item.qty > 0) {
+        params.append(id + '_name', item.name);
+        params.append(id + '_qty', item.qty);
+        params.append(id + '_harga', item.price);
+        params.append(id + '_total', item.qty * item.price);
+        hasItems = true;
       }
+    });
+
+    if (hasItems) {
+      /* Redirect mulus setelah delay singkat untuk efek visual */
+      setTimeout(() => {
+        window.location.href = 'form.html?' + params.toString();
+      }, 350);
     } else {
-      showToast('Silakan pilih jumlah tiket terlebih dahulu');
+      checkoutBtn.textContent = 'Lanjutkan ke Pembayaran';
+      checkoutBtn.disabled = false;
     }
   });
 
+  /* --- Inisialisasi --- */
   updateUI();
+})();
 </script>
 
 </body>
