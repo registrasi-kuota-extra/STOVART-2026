@@ -2,152 +2,207 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protix — Form Pemesanan Stovart 2026</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FF6B00">
+<meta name="description" content="Form pemesanan tiket resmi Stovart 2026 - Stovit Art Festival oleh BEM FKG UNAIR.">
+<title>Protix — Form Pemesanan Tiket Stovart 2026</title>
+
+<link rel="icon" type="image/png" href="logo-event.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"></noscript>
+
 <style>
   :root {
-    --primary: #FF6B00; --primary-dark: #E65E00; --primary-light: #FFE5D6;
-    --primary-glow: rgba(255, 107, 0, 0.15); --bg-main: #f7f7f8; --card-bg: #FFFFFF;
-    --card-border: #e8e8e8; --text-main: #1a1a1a; --text-muted: #8a8a8a; --error: #EF4444;
-    --btn-orange: #FF6B00;
+    --primary: #FF6B00; --primary-dark: #E05F00; --primary-light: #FFE8D6;
+    --primary-glow: rgba(255, 107, 0, 0.15); --bg-main: #f4f4f5; --card-bg: #FFFFFF;
+    --card-border: rgba(0,0,0,0.07); --text-main: #111111; --text-muted: #7a7a7a;
+    --error: #EF4444; --error-bg: #FFF0F0; --success: #10B981;
+    --btn-orange: #FF6B00; --btn-orange-hover: #E05F00; --btn-orange-disabled: #FBD5A8;
+    --radius: 12px; --radius-sm: 8px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif; }
-  body { background: var(--bg-main); color: var(--text-main); padding-bottom: 120px; overflow-x: hidden; -webkit-font-smoothing:antialiased; }
-  .container { max-width: 900px; margin: auto; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-main); color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding-bottom: calc(100px + var(--safe-bottom));
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,107,0,0.06) 0%, transparent 60%);
+  }
 
-  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #fff; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100; }
-  .logo { font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 24px; color: var(--primary); letter-spacing: -1px; text-decoration: none; }
-  .logo span { color: var(--text-main); }
-  .topbar-right { display: flex; align-items: center; gap: 12px; }
-  .lang-selector { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text-muted); cursor:pointer; padding:7px 10px; border:1px solid var(--card-border); border-radius:4px; background:var(--card-bg); transition: 0.2s; }
-  .lang-selector:hover { border-color: var(--primary); color: var(--primary); }
-  .user-icon { width:36px; height:36px; border:1px solid var(--card-border); border-radius:50%; display:grid; place-items:center; color:var(--text-muted); cursor:pointer; background:var(--card-bg); transition: 0.2s; }
-  .user-icon:hover { border-color: var(--primary); color: var(--primary); }
+  /* HEADER */
+  .header{background:rgba(255,255,255,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);position:sticky;top:0;z-index:100}
+  .header-inner{max-width:960px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+  .logo-link{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo-img{height:32px;width:32px;object-fit:contain;border-radius:6px}
+  .logo-text{font-family:'Space Grotesk','Inter',sans-serif;font-weight:800;font-size:22px;color:var(--btn-orange);letter-spacing:-0.8px}
+  .logo-text span{color:var(--text-main)}
+  .header-right{display:flex;align-items:center;gap:10px}
+  .lang-selector, .user-icon{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;color:var(--text-muted);cursor:pointer;padding:6px 10px;border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--card-bg);font-weight:500;transition:all .2s}
+  .lang-selector:hover, .user-icon:hover{border-color:#bbb;background:#fafafa}
+  .user-icon{width:34px;height:34px;border-radius:50%}
 
-  .banner img { width: 100%; max-height: 350px; object-fit: cover; display: block; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-  .hero-card { background: #fff; margin: -40px 20px 20px; padding: 25px; border-radius: 8px; position: relative; z-index: 2; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid var(--card-border); }
-  .hero-card h2 { font-size: 24px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
-  .hero-card p { color: var(--text-muted); margin-top: 4px; font-size: 14px; }
-  .event-info { display: flex; justify-content: center; gap: 16px; margin-top: 15px; flex-wrap: wrap; color: var(--text-muted); font-size: 13px; font-weight: 500; }
+  /* STEPS */
+  .steps{background:var(--card-bg);border-bottom:1px solid var(--card-border)}
+  .steps-inner{max-width:960px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:0;overflow-x:auto}
+  .step{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .step-num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px;background:#f0f0f0;color:var(--text-muted);transition:all .35s}
+  .step.active .step-num{background:var(--btn-orange);color:#fff;box-shadow:0 2px 10px rgba(255,107,0,0.35)}
+  .step.active .step-label{color:var(--text-main);font-weight:700}
+  .step.done .step-num{background:var(--success);color:#fff}
+  .step-label{font-size:12px;color:var(--text-muted);font-weight:500;white-space:nowrap}
+  .step-divider{width:32px;height:2px;background:#e8e8e8;margin:0 8px;flex-shrink:0;border-radius:2px;transition:background .3s}
+  .step.active+.step-divider,.step-divider.passed{background:var(--btn-orange);opacity:.3}
+  @media(max-width:640px){.step-label{display:none}.step-divider{width:16px;margin:0 4px}.steps-inner{padding:14px 16px}}
+
+  .container { max-width: 800px; margin: 0 auto; padding: 28px 24px; }
+
+  /* HERO */
+  .hero-card { background: #fff; margin-bottom: 28px; padding: 26px 24px; border-radius: var(--radius); position: relative; z-index: 2; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid var(--card-border); }
+  .hero-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; line-height: 1.25; }
+  .hero-card p { color: var(--text-muted); margin-top: 6px; font-size: 14px; }
+  .event-info { display: flex; justify-content: center; gap: 18px; margin-top: 16px; flex-wrap: wrap; color: var(--text-muted); font-size: 13px; font-weight: 500; }
   .event-info div { display: flex; align-items: center; gap: 6px; }
-  .event-info i { color: var(--primary); }
+  .event-info i { color: var(--btn-orange); }
 
-  .header-title { padding: 10px 25px 5px; }
-  .header-title h1 { font-size: 22px; font-weight: 800; }
-  .header-title p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+  /* CARDS */
+  .card { background: #fff; border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .title { font-size: 14px; font-weight: 800; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .title i { color: var(--btn-orange); }
 
-  .card { background: #fff; border: 1px solid var(--card-border); border-radius: 8px; padding: 24px; margin: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-  .title { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--text-main); padding-bottom: 10px; }
-  .title i { color: var(--primary); }
-  
+  /* FORM */
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 8px; color: var(--text-main); }
+  .form-group label .required { color: var(--error); margin-left: 2px; }
   .input-icon-wrap { position: relative; display: flex; align-items: center; }
-  .input-icon { position: absolute; left: 16px; font-size: 14px; color: var(--text-muted); pointer-events: none; }
+  .input-icon { position: absolute; left: 16px; font-size: 14px; color: var(--text-muted); pointer-events: none; transition: color 0.2s; }
+  .input-icon-wrap:focus-within .input-icon { color: var(--btn-orange); }
 
   input, select, textarea {
-    width: 100%; padding: 12px 16px 12px 44px; border-radius: 6px; border: 1px solid var(--card-border);
-    background: #fff; font-size: 14px; transition: 0.2s; color: var(--text-main);
+    width: 100%; padding: 12px 16px 12px 44px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);
+    background: #fff; font-size: 14px; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; color: var(--text-main); font-family: inherit;
   }
-  textarea { resize: vertical; min-height: 80px; padding-left: 16px; }
-  select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 16px center; background-size: 14px; }
-  
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
-  input.error, select.error, textarea.error { border-color: var(--error); background: #FFF0F0; animation: shake 0.4s; }
+  textarea { resize: vertical; min-height: 80px; padding-left: 16px; line-height: 1.5; }
+  select { appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a7a7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 16px center; background-size: 14px; padding-right: 40px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--btn-orange); box-shadow: 0 0 0 3px var(--primary-glow); }
+  input.error, select.error, textarea.error { border-color: var(--error); background: var(--error-bg); animation: shake 0.4s ease; }
   @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; color: var(--text-muted); }
-  .summary-row strong { color: var(--text-main); font-weight: 600; }
+  .field-error { display: none; color: var(--error); font-size: 12px; margin-top: 6px; font-weight: 500; align-items: center; gap: 6px; }
+  .field-error.show { display: flex; }
+
+  /* SUMMARY */
+  .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 14px; color: var(--text-muted); gap: 12px; }
+  .summary-row strong { color: var(--text-main); font-weight: 600; text-align: right; }
+  .summary-row .label-text { flex: 1; }
   .total { font-size: 16px; font-weight: 800; color: var(--text-main); border-top: 1px dashed var(--card-border); margin-top: 8px; padding-top: 14px; }
-  .total span { color: var(--primary); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 20px; }
+  .total span { color: var(--btn-orange); font-family: 'Space Grotesk', sans-serif; font-size: 22px; }
 
-  .check { display: flex; gap: 12px; margin-top: 12px; align-items: flex-start; background: #FAFAFA; padding: 14px; border-radius: 6px; border: 1px solid var(--card-border); }
-  .check input { width: 18px; height: 18px; min-width: 18px; accent-color: var(--primary); cursor: pointer; margin-top: 2px; padding: 0; }
-  .check label { font-size: 13px; color: var(--text-muted); cursor: pointer; line-height: 1.5; }
+  /* CHECKBOX */
+  .check { display: flex; gap: 12px; margin-top: 12px; align-items: flex-start; background: #FAFAFA; padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); }
+  .check input { width: 18px; height: 18px; min-width: 18px; accent-color: var(--btn-orange); cursor: pointer; margin-top: 2px; padding: 0; border-radius: 3px; }
+  .check label { font-size: 13px; color: var(--text-muted); cursor: pointer; line-height: 1.5; user-select: none; }
+  .check label a { color: var(--btn-orange); text-decoration: underline; }
 
-  .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; padding: 12px 20px; box-shadow: 0 -2px 12px rgba(0,0,0,0.06); border-top: 1px solid var(--card-border); z-index: 100; }
-  .btn { width: 100%; max-width: 900px; margin: auto; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 32px; border: none; border-radius: 6px; background: var(--btn-orange); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-  .btn:hover:not(:disabled) { background: var(--primary-dark); }
-  .btn:disabled { background: #ffcba0; cursor: not-allowed; }
+  /* STICKY BAR */
+  .sticky-bar { position: fixed; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 16px 24px; padding-bottom: calc(16px + var(--safe-bottom)); box-shadow: 0 -4px 30px rgba(0,0,0,0.06); border-top: 1px solid var(--card-border); z-index: 100; }
+  .sticky-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .btn { width: 100%; max-width: 300px; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 15px 36px; border: none; border-radius: var(--radius-sm); background: var(--btn-orange); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; transition: all .25s; letter-spacing: 0.3px; position: relative; overflow: hidden; }
+  .btn:hover:not(:disabled) { background: var(--btn-orange-hover); box-shadow: 0 4px 18px rgba(255,107,0,0.35); transform: translateY(-1px); }
+  .btn:disabled { background: var(--btn-orange-disabled); cursor: not-allowed; box-shadow: none; transform: none; }
 
+  /* LOADING & TOAST */
   .loading-overlay { visibility: hidden; opacity: 0; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.3s ease; }
   .loading-overlay.active { visibility: visible; opacity: 1; }
   .spinner-box { width: 70px; height: 70px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px; }
-  .spinner { width: 35px; height: 35px; border: 4px solid var(--primary-glow); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+  .spinner { width: 35px; height: 35px; border: 4px solid var(--primary-glow); border-top-color: var(--btn-orange); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-text { font-size: 16px; font-weight: 700; color: var(--text-main); }
   .loading-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
-
-  .toast {
-    position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
-    background: var(--text-main); color: #fff; padding: 12px 24px; border-radius: 6px;
-    font-size: 14px; font-weight: 500; opacity: 0; pointer-events: none; transition: all .3s; z-index: 100000; max-width: 90vw; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+  .toast { position: fixed; bottom: calc(100px + var(--safe-bottom)); left: 50%; transform: translateX(-50%) translateY(16px); background: var(--text-main); color: #fff; padding: 12px 24px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: all .35s; z-index: 100000; max-width: 90vw; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.error { background: var(--error); }
 
-  @media (max-width: 480px) {
-    .hero-card { margin: -20px 14px 16px; padding: 20px; }
-    .hero-card h2 { font-size: 20px; }
+  @media(max-width:520px) {
+    .container { padding: 20px 16px; }
+    .hero-card { padding: 20px 16px; }
     .event-info { flex-direction: column; gap: 6px; }
-    .header-title { padding: 10px 14px 5px; }
-    .header-title h1 { font-size: 20px; }
-    .card { margin: 14px; padding: 18px; }
-    .btn { font-size: 14px; padding: 12px 20px; }
+    .card { padding: 18px; }
+    .btn { padding: 13px 22px; font-size: 13px; max-width: 100%; }
+    .header-inner { padding: 10px 16px; }
   }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <a href="index.html" class="logo">Protix<span>.ID</span></a>
-  <div class="topbar-right">
-    <div class="lang-selector"><i class="fa-solid fa-globe"></i> ID</div>
-    <div class="user-icon"><i class="fa-solid fa-user"></i></div>
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link" aria-label="Protix.ID Home">
+      <img src="logo-event.png" alt="Protix Logo" class="logo-img" width="32" height="32">
+      <div class="logo-text">Protix<span>.ID</span></div>
+    </a>
+    <div class="header-right">
+      <div class="lang-selector" role="button" tabindex="0" aria-label="Pilih bahasa: Indonesia">
+        <i class="fa-solid fa-globe" aria-hidden="true"></i> ID
+      </div>
+      <div class="user-icon" role="button" tabindex="0" aria-label="Akun pengguna">
+        <i class="fa-solid fa-user" aria-hidden="true"></i>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
-<div class="container">
-  <div class="banner">
-    <img src="banner_stovart.png" alt="Stovart 2026 - Stovit Art Festival">
+<nav class="steps" aria-label="Progress pemesanan">
+  <div class="steps-inner">
+    <div class="step done"><div class="step-num"><i class="fa-solid fa-check" style="font-size:10px"></i></div><div class="step-label">Pilih Kategori</div></div>
+    <div class="step-divider passed"></div>
+    <div class="step active"><div class="step-num">2</div><div class="step-label">Data Pemesan</div></div>
+    <div class="step-divider"></div>
+    <div class="step"><div class="step-num">3</div><div class="step-label">Pembayaran</div></div>
+    <div class="step-divider"></div>
+    <div class="step"><div class="step-num">4</div><div class="step-label">E-Tiket</div></div>
   </div>
+</nav>
 
-  <div class="hero-card">
-    <h2>Stovart 2026 - Stovit Art Festival</h2>
+<main class="container">
+  <section class="hero-card" aria-labelledby="hero-title">
+    <h2 id="hero-title">Stovart 2026 — Stovit Art Festival</h2>
     <p>Dipersembahkan oleh BEM FKG UNAIR</p>
     <div class="event-info">
       <div><i class="fa-solid fa-calendar-days"></i> 20 November 2026</div>
       <div><i class="fa-solid fa-location-dot"></i> Halaman Outdoor Balai Pemuda</div>
     </div>
-  </div>
+  </section>
 
-  <div class="header-title">
-    <h1>Form Pemesanan Tiket</h1>
-    <p>Lengkapi data berikut sebelum melanjutkan ke pembayaran.</p>
-  </div>
+  <section class="card" aria-labelledby="summary-title">
+    <div class="title" id="summary-title"><i class="fa-solid fa-receipt"></i> Ringkasan Pesanan</div>
+    <div class="summary-row"><span class="label-text">Jenis Tiket</span><strong id="jenisTiket">-</strong></div>
+    <div id="detailTiket" aria-live="polite"></div>
+    <div class="summary-row"><span class="label-text">Jumlah Tiket</span><strong id="jumlahTiket">0</strong></div>
+    <div class="summary-row total"><span class="label-text">Total Pembayaran</span><span id="totalBayar">Rp 0</span></div>
+  </section>
 
-  <div class="card">
-    <div class="title"><i class="fa-solid fa-receipt"></i> Ringkasan Pesanan</div>
-    <div class="summary-row"><span>Jenis Tiket</span><strong id="jenisTiket">-</strong></div>
-    <div id="detailTiket"></div>
-    <div class="summary-row"><span>Jumlah Tiket</span><strong id="jumlahTiket">0</strong></div>
-    <div class="summary-row total"><span>Total Pembayaran</span><span id="totalBayar">Rp 0</span></div>
-  </div>
+  <form class="card" id="orderForm" novalidate aria-labelledby="data-title">
+    <div class="title" id="data-title"><i class="fa-solid fa-user-pen"></i> Data Pemesan</div>
 
-  <div class="card">
-    <div class="title"><i class="fa-solid fa-user-pen"></i> Data Pemesan</div>
     <div class="form-group">
-      <label for="nama">Nama Lengkap (sesuai identitas)</label>
+      <label for="nama">Nama Lengkap (sesuai identitas)<span class="required">*</span></label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-user input-icon"></i>
-        <input id="nama" type="text" placeholder="Masukkan nama lengkap">
+        <input id="nama" name="nama" type="text" placeholder="Masukkan nama lengkap" autocomplete="name" maxlength="100" aria-required="true">
       </div>
+      <div class="field-error" id="nama-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Nama lengkap wajib diisi.</div>
     </div>
+
     <div class="form-group">
-      <label for="identitas">Jenis Identitas</label>
+      <label for="identitas">Jenis Identitas<span class="required">*</span></label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-id-card input-icon"></i>
-        <select id="identitas">
+        <select id="identitas" name="identitas" aria-required="true">
           <option value="">Pilih Jenis Identitas</option>
           <option value="KTP">KTP</option>
           <option value="SIM">SIM</option>
@@ -155,95 +210,131 @@
           <option value="Kartu Pelajar">Kartu Pelajar</option>
         </select>
       </div>
+      <div class="field-error" id="identitas-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Jenis identitas wajib dipilih.</div>
     </div>
+
     <div class="form-group">
-      <label for="nomorId">Nomor Identitas</label>
+      <label for="nomorId">Nomor Identitas<span class="required">*</span></label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-hashtag input-icon"></i>
-        <input id="nomorId" type="text" placeholder="Masukkan nomor identitas">
+        <input id="nomorId" name="nomorId" type="text" placeholder="Masukkan nomor identitas" autocomplete="off" maxlength="50" inputmode="text" aria-required="true">
       </div>
+      <div class="field-error" id="nomorId-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Nomor identitas wajib diisi.</div>
     </div>
+
     <div class="form-group">
-      <label for="email">E-mail Aktif</label>
+      <label for="email">E-mail Aktif<span class="required">*</span></label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-envelope input-icon"></i>
-        <input id="email" type="email" placeholder="contoh@email.com">
+        <input id="email" name="email" type="email" placeholder="contoh@email.com" autocomplete="email" maxlength="100" inputmode="email" aria-required="true">
       </div>
+      <div class="field-error" id="email-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Format E-mail tidak valid.</div>
     </div>
+
     <div class="form-group">
-      <label for="wa">No. WhatsApp Aktif</label>
+      <label for="wa">No. WhatsApp Aktif<span class="required">*</span></label>
       <div class="input-icon-wrap">
         <i class="fa-solid fa-phone input-icon"></i>
-        <input id="wa" type="tel" placeholder="08xxxxxxxxxx">
+        <input id="wa" name="wa" type="tel" placeholder="08xxxxxxxxxx" autocomplete="tel" maxlength="16" inputmode="numeric" aria-required="true">
       </div>
+      <div class="field-error" id="wa-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i> No. WhatsApp harus 8-15 digit angka.</div>
     </div>
+
     <div class="form-group">
-      <label for="alamat">Alamat / Tempat Tinggal</label>
+      <label for="alamat">Alamat / Tempat Tinggal<span class="required">*</span></label>
       <div class="input-icon-wrap">
-        <textarea id="alamat" placeholder="Masukkan alamat lengkap"></textarea>
+        <textarea id="alamat" name="alamat" placeholder="Masukkan alamat lengkap" maxlength="300" autocomplete="street-address" aria-required="true"></textarea>
       </div>
+      <div class="field-error" id="alamat-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Alamat wajib diisi.</div>
     </div>
+  </form>
+
+  <section class="card" aria-labelledby="agree-title">
+    <div class="title" id="agree-title"><i class="fa-solid fa-shield-halved"></i> Persetujuan</div>
+    <div class="check">
+      <input type="checkbox" id="setuju1">
+      <label for="setuju1">Data yang saya isi adalah benar dan dapat dipertanggungjawabkan.</label>
+    </div>
+    <div class="check">
+      <input type="checkbox" id="setuju2">
+      <label for="setuju2">Saya menyetujui <a href="#" onclick="return false;">syarat dan ketentuan acara</a> serta <a href="#" onclick="return false;">kebijakan privasi</a>.</label>
+    </div>
+  </section>
+</main>
+
+<footer class="sticky-bar">
+  <div class="sticky-inner">
+    <button class="btn" id="lanjut" type="submit" form="orderForm">
+      <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      <span>LANJUT KE PEMBAYARAN</span>
+    </button>
   </div>
+</footer>
 
-  <div class="card">
-    <div class="title"><i class="fa-solid fa-shield-halved"></i> Persetujuan</div>
-    <div class="check"><input type="checkbox" id="setuju1"><label for="setuju1">Data yang saya isi adalah benar dan dapat dipertanggungjawabkan.</label></div>
-    <div class="check"><input type="checkbox" id="setuju2"><label for="setuju2">Saya menyetujui syarat dan ketentuan acara serta kebijakan privasi.</label></div>
-  </div>
-</div>
-
-<div class="bottom">
-  <button class="btn" id="lanjut" type="button"><i class="fa-solid fa-arrow-right-to-bracket"></i> LANJUT KE PEMBAYARAN</button>
-</div>
-
-<div id="loading" class="loading-overlay">
+<div id="loading" class="loading-overlay" role="status" aria-live="polite">
   <div class="spinner-box"><div class="spinner"></div></div>
   <div class="loading-text">Menyiapkan Halaman Pembayaran...</div>
   <div class="loading-sub">Mohon tunggu sebentar</div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+(function() {
+  'use strict';
+
   let toastTimer;
-  function showToast(msg){
+  function showToast(msg, type) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
+    t.innerHTML = '';
+    const icon = document.createElement('i');
+    icon.className = 'fa-solid ' + (type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-info');
+    t.appendChild(icon);
+    t.appendChild(document.createTextNode(' ' + msg));
+    t.className = 'toast' + (type ? ' ' + type : '');
+    requestAnimationFrame(() => t.classList.add('show'));
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  
-  let cartItems = [];
+  const cartItems = [];
   let totalQty = 0;
   let totalPrice = 0;
 
-  const ticketTypes = [
-    { id: 'presale_festival', name: 'Presale Festival' },
-    { id: 'presale_vip', name: 'Presale VIP' }
-  ];
+  // === DYNAMIC TICKET PARSER ===
+  // Mencari semua parameter berakhiran _qty untuk menentukan jenis tiket yang dipilih
+  const ticketIds = [];
+  for (const key of urlParams.keys()) {
+    if (key.endsWith('_qty') && parseInt(urlParams.get(key), 10) > 0) {
+      ticketIds.push(key.replace('_qty', ''));
+    }
+  }
 
-  ticketTypes.forEach(type => {
-    const qty = parseInt(urlParams.get(type.id + '_qty') || '0', 10);
-    if (qty > 0) {
+  ticketIds.forEach(id => {
+    const qty = parseInt(urlParams.get(id + '_qty') || '0', 10);
+    const name = urlParams.get(id + '_name') || 'Tiket';
+    const harga = parseInt(urlParams.get(id + '_harga') || '0', 10);
+    const total = parseInt(urlParams.get(id + '_total') || '0', 10);
+    
+    if (qty > 0 && qty < 100) {
       cartItems.push({
-        id: type.id,
-        name: urlParams.get(type.id + '_name') || type.name,
-        qty: qty,
-        harga: parseInt(urlParams.get(type.id + '_harga') || '0', 10),
-        total: parseInt(urlParams.get(type.id + '_total') || '0', 10)
+        id, name, qty,
+        harga: isNaN(harga) ? 0 : harga,
+        total: isNaN(total) ? 0 : total
       });
       totalQty += qty;
-      totalPrice += parseInt(urlParams.get(type.id + '_total') || '0', 10);
+      totalPrice += isNaN(total) ? 0 : total;
     }
   });
 
+  // Jika tidak ada tiket, kembali ke halaman utama
   if (cartItems.length === 0) {
     window.location.replace('index.html');
+    return;
   }
 
+  // === DOM REFS ===
   const namaEl = document.getElementById('nama');
   const identitasEl = document.getElementById('identitas');
   const nomorIdEl = document.getElementById('nomorId');
@@ -254,38 +345,66 @@
   const setuju2El = document.getElementById('setuju2');
   const loadingEl = document.getElementById('loading');
   const lanjutBtn = document.getElementById('lanjut');
+  const orderForm = document.getElementById('orderForm');
 
-  document.getElementById('totalBayar').innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
-  document.getElementById('jumlahTiket').innerText = totalQty;
-  
-  let detailHtml = '';
-  let jenisTiketText = '';
+  // === RENDER SUMMARY (XSS-SAFE) ===
+  document.getElementById('totalBayar').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+  document.getElementById('jumlahTiket').textContent = totalQty;
+
+  const detailEl = document.getElementById('detailTiket');
+  const jenisEl = document.getElementById('jenisTiket');
+  const fragment = document.createDocumentFragment();
+  let jenisText = '';
+
   cartItems.forEach(item => {
-    detailHtml += `<div class="summary-row"><span>${item.name} (${item.qty}x)</span><strong>Rp ${item.total.toLocaleString('id-ID')}</strong></div>`;
-    jenisTiketText += `${item.name} (${item.qty})<br>`;
-  });
-  
-  document.getElementById('detailTiket').innerHTML = detailHtml;
-  document.getElementById('jenisTiket').innerHTML = jenisTiketText;
+    const row = document.createElement('div');
+    row.className = 'summary-row';
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'label-text';
+    labelSpan.textContent = item.name + ' (' + item.qty + 'x)';
+    const strong = document.createElement('strong');
+    strong.textContent = 'Rp ' + item.total.toLocaleString('id-ID');
+    row.appendChild(labelSpan);
+    row.appendChild(strong);
+    fragment.appendChild(row);
 
+    if (jenisText) jenisText += ', ';
+    jenisText += item.name + ' (' + item.qty + ')';
+  });
+  detailEl.innerHTML = '';
+  detailEl.appendChild(fragment);
+  jenisEl.textContent = jenisText;
+
+  // === DRAFT STORAGE (Debounced) ===
+  let saveTimer;
   function saveDraft() {
-    try {
-      localStorage.setItem('draft_nama', namaEl.value);
-      localStorage.setItem('draft_identitas', identitasEl.value);
-      localStorage.setItem('draft_nomorId', nomorIdEl.value);
-      localStorage.setItem('draft_email', emailEl.value);
-      localStorage.setItem('draft_wa', waEl.value);
-      localStorage.setItem('draft_alamat', alamatEl.value);
-    } catch(e) {}
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try {
+        const draft = {
+          nama: namaEl.value, identitas: identitasEl.value, nomorId: nomorIdEl.value,
+          email: emailEl.value, wa: waEl.value, alamat: alamatEl.value, ts: Date.now()
+        };
+        localStorage.setItem('protix_draft', JSON.stringify(draft));
+      } catch(e) {}
+    }, 300);
   }
+
   function restoreDraft() {
     try {
-      namaEl.value = localStorage.getItem('draft_nama') || '';
-      identitasEl.value = localStorage.getItem('draft_identitas') || '';
-      nomorIdEl.value = localStorage.getItem('draft_nomorId') || '';
-      emailEl.value = localStorage.getItem('draft_email') || '';
-      waEl.value = localStorage.getItem('draft_wa') || '';
-      alamatEl.value = localStorage.getItem('draft_alamat') || '';
+      const raw = localStorage.getItem('protix_draft');
+      if (!raw) return;
+      const draft = JSON.parse(raw);
+      if (draft.ts && (Date.now() - draft.ts) > 86400000) { // 24 hours expiry
+        localStorage.removeItem('protix_draft');
+        return;
+      }
+      namaEl.value = draft.nama || '';
+      identitasEl.value = draft.identitas || '';
+      nomorIdEl.value = draft.nomorId || '';
+      emailEl.value = draft.email || '';
+      waEl.value = draft.wa || '';
+      alamatEl.value = draft.alamat || '';
     } catch(e) {}
   }
   restoreDraft();
@@ -295,84 +414,132 @@
     el.addEventListener('change', saveDraft);
   });
 
-  lanjutBtn.addEventListener('click', function() {
-    const wajib = [namaEl, identitasEl, nomorIdEl, emailEl, waEl, alamatEl];
+  // === WA AUTO FORMAT ===
+  waEl.addEventListener('input', function() {
+    let val = this.value.replace(/[^0-9]/g, '');
+    if (val.length > 16) val = val.slice(0, 16);
+    if (val !== this.value) this.value = val;
+  });
+
+  // === VALIDATION ===
+  function clearError(field) {
+    field.classList.remove('error');
+    const errEl = document.getElementById(field.id + '-error');
+    if (errEl) errEl.classList.remove('show');
+    void field.offsetWidth;
+  }
+  function showError(field) {
+    field.classList.add('error');
+    const errEl = document.getElementById(field.id + '-error');
+    if (errEl) errEl.classList.add('show');
+  }
+
+  const fields = [namaEl, identitasEl, nomorIdEl, emailEl, waEl, alamatEl];
+  fields.forEach(el => el.addEventListener('input', () => clearError(el)));
+
+  function validateField(field) {
+    const val = field.value.trim();
+    if (!val) { showError(field); return false; }
+
+    if (field === emailEl) {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!pattern.test(val)) { showError(field); return false; }
+    }
+    if (field === waEl) {
+      const digitsOnly = val.replace(/[^0-9]/g, '');
+      if (digitsOnly.length < 8 || digitsOnly.length > 15) { showError(field); return false; }
+    }
+    clearError(field);
+    return true;
+  }
+
+  // === SUBMIT ===
+  let isSubmitting = false;
+
+  function submitOrder() {
+    if (isSubmitting) return;
+
     let isValid = true;
     let firstError = null;
-    
-    wajib.forEach(field => field.classList.remove('error'));
 
-    for (const field of wajib) {
-      if (!field.value.trim()) {
-        field.classList.add('error');
+    fields.forEach(field => {
+      if (!validateField(field)) {
         if (!firstError) firstError = field;
         isValid = false;
       }
-    }
+    });
 
     if (!isValid) {
-      showToast('Mohon lengkapi semua data wajib di atas.');
+      showToast('Mohon lengkapi semua data wajib', 'error');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(emailEl.value.trim())) {
-      emailEl.classList.add('error');
-      showToast('Format E-mail tidak valid.');
-      emailEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    const phonePattern = /^[0-9]{8,15}$/;
-    if (!phonePattern.test(waEl.value.trim())) {
-      waEl.classList.add('error');
-      showToast('No. WhatsApp harus terdiri dari 8-15 digit angka.');
-      waEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
     if (!setuju1El.checked || !setuju2El.checked) {
-      showToast('Harap centang seluruh kotak persetujuan.');
+      showToast('Harap centang seluruh kotak persetujuan', 'error');
       return;
     }
 
+    isSubmitting = true;
     loadingEl.classList.add('active');
     lanjutBtn.disabled = true;
-    lanjutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> MEMPROSES...';
+    lanjutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>MEMPROSES...</span>';
 
     const orderData = {
-      nama: namaEl.value, 
-      wa: waEl.value, 
-      email: emailEl.value,
-      identitas: identitasEl.value, 
-      nomor_id: nomorIdEl.value, 
-      alamat: alamatEl.value,
-      detail_pesanan: cartItems,
-      jumlah_tiket: totalQty, 
-      total_bayar: totalPrice
+      nama: namaEl.value.trim(), wa: waEl.value.trim(), email: emailEl.value.trim(),
+      identitas: identitasEl.value, nomor_id: nomorIdEl.value.trim(), alamat: alamatEl.value.trim(),
+      detail_pesanan: cartItems, jumlah_tiket: totalQty, total_bayar: totalPrice,
+      timestamp: new Date().toISOString(), source: 'protix-form-stovart-2026'
     };
 
     try {
       localStorage.setItem('protix_order', JSON.stringify(orderData));
+      localStorage.removeItem('protix_draft');
     } catch(e) {}
 
-    fetch('https://formspree.io/f/mojojdpl', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(orderData),
-      keepalive: true
-    }).catch(e => console.log('Formspree error:', e));
+    // Fire and forget to Formspree
+    try {
+      fetch('https://formspree.io/f/mojojdpl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(orderData),
+        keepalive: true
+      }).catch(e => console.warn('Formspree error:', e));
+    } catch(e) {}
 
     const qrisParams = new URLSearchParams({
-      nama: namaEl.value, 
-      wa: waEl.value, 
-      totalQty: totalQty,
-      total: totalPrice
+      nama: orderData.nama, wa: orderData.wa,
+      totalQty: String(totalQty), total: String(totalPrice)
     });
-    
-    window.location.href = 'qris.html?' + qrisParams.toString();
+
+    setTimeout(() => {
+      window.location.href = 'qris.html?' + qrisParams.toString();
+    }, 600);
+  }
+
+  orderForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitOrder();
   });
+  lanjutBtn.addEventListener('click', submitOrder);
+
+  // === RESET STATE on bfcache ===
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      isSubmitting = false;
+      loadingEl.classList.remove('active');
+      lanjutBtn.disabled = false;
+      lanjutBtn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i><span>LANJUT KE PEMBAYARAN</span>';
+    }
+  });
+
+  setuju2El.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.checked) {
+      e.preventDefault();
+      submitOrder();
+    }
+  });
+})();
 </script>
 </body>
 </html>
